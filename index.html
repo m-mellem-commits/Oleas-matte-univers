@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oleas matte-univers – 1T</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1f1d36; --muted:#5b5876; --bg:#fbfaf7; --card:#ffffff; --line:#e7e3da;
+  --night:#1c1a3a; --night2:#2a2752; --star:#ffd36e; --accent:#e2557a; --accent-soft:#fdeaf0;
+  --tip:#eef6ff; --tip-line:#9cc4f5; --warn:#fff5e6; --warn-line:#f2b65c;
+  --lett:#2e9d6a; --middels:#d98a1c; --utf:#c0395f;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.65}
+.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+aside{background:linear-gradient(180deg,var(--night),var(--night2));color:#eceaff;padding:28px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-family:"Fraunces",serif;font-size:1.55rem;line-height:1.15;margin:0 8px 4px;color:#fff}
+.brand small{display:block;font-family:"Nunito";font-size:.85rem;font-weight:600;color:var(--star);letter-spacing:.04em;margin-top:6px}
+.stars{height:24px;margin:6px 8px 18px;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(var(--star) 1.2px,transparent 1.8px);background-size:23px 13px,37px 19px;background-position:0 0,11px 5px;opacity:.5}
+nav a{display:flex;align-items:center;gap:10px;color:#d8d5f5;text-decoration:none;padding:9px 10px;border-radius:10px;font-weight:600;margin-bottom:2px}
+nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+nav a.active{background:rgba(255,211,110,.16);color:#fff;box-shadow:inset 3px 0 0 var(--star)}
+nav .ic{width:24px;text-align:center}
+nav .nt{flex:1}
+nav .cnt{font-size:.75rem;color:var(--star);font-weight:700;white-space:nowrap}
+.side-foot{margin:22px 8px 0;font-size:.8rem;color:#a9a5d6}
+main{min-width:0;padding:44px clamp(18px,5vw,72px) 80px;max-width:900px;width:100%}
+.topic{display:block}
+body.ready .topic{display:none}
+body.ready .topic.on{display:block}
+h1{font-family:"Fraunces",serif;font-size:2.3rem;line-height:1.15;margin:0 0 .6em}
+h2{font-family:"Fraunces",serif;font-size:1.5rem;margin:1.8em 0 .5em;padding-top:.3em;border-top:1px solid var(--line)}
+h3{font-size:1.12rem;margin:1.4em 0 .4em}
+a{color:var(--accent)}
+code{background:#f1eee7;padding:.1em .35em;border-radius:5px;font-size:.9em}
+pre{background:#1f1d36;color:#f3f1ff;padding:16px 18px;border-radius:12px;overflow:auto;font-size:.88rem;line-height:1.5}
+pre code{background:none;padding:0;color:inherit}
+blockquote{margin:1.2em 0;padding:12px 16px;border-radius:12px;background:var(--tip);border-left:4px solid var(--tip-line)}
+blockquote p{margin:.2em 0}
+blockquote.warn{background:var(--warn);border-left-color:var(--warn-line)}
+.tw{overflow-x:auto;margin:1em 0}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{background:#f4f1ea;font-weight:800;font-size:.9rem}
+tr:last-child td{border-bottom:none}
+.arithmatex{overflow-x:auto;overflow-y:hidden}
+div.arithmatex{margin:1em 0;padding:4px 0}
+/* Oppgaver */
+h4.oppg{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:2em 0 .4em;font-size:1.05rem;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px 12px 0 0;border-bottom:none}
+h4.oppg + p, h4.oppg ~ p{margin-top:.3em}
+.lvl{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 9px;border-radius:99px;color:#fff}
+.lvl-lett{background:var(--lett)}.lvl-middels{background:var(--middels)}.lvl-utfordring{background:var(--utf)}
+.done-btn{margin-left:auto;border:1.5px solid var(--line);background:#fff;color:var(--muted);border-radius:99px;padding:3px 12px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.done-btn:hover{border-color:var(--lett);color:var(--lett)}
+h4.oppg.done{background:#eefaf3;border-color:#bfe6cf}
+h4.oppg.done .done-btn{background:var(--lett);border-color:var(--lett);color:#fff}
+details{margin:.6em 0 1.4em;border:1px dashed #cfc9bc;border-radius:12px;padding:6px 14px;background:#fffdf8}
+details summary{cursor:pointer;font-weight:800;color:var(--accent);padding:4px 0;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";}
+details[open] summary::before{content:"▾ ";}
+details[open]{background:#fff;border-style:solid;border-color:var(--line)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 18px}
+.toolbar button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 14px;font:inherit;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer}
+.toolbar button:hover{color:var(--ink);border-color:#bdb7a8}
+.progress{height:8px;border-radius:99px;background:#ece8de;overflow:hidden;margin:0 0 6px}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--lett),#59c48f);width:0;transition:width .3s}
+.ptext{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:48px;padding-top:20px;border-top:1px solid var(--line)}
+.pager a{text-decoration:none;font-weight:800}
+.menu-btn{display:none}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  aside{position:fixed;inset:0 auto 0 0;width:280px;z-index:20;transform:translateX(-100%);transition:transform .25s}
+  body.nav-open aside{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .menu-btn{display:inline-flex;position:sticky;top:10px;z-index:10;margin:10px 0 0 12px;border:none;background:var(--night);color:#fff;font:inherit;font-weight:800;padding:8px 14px;border-radius:99px;cursor:pointer}
+  main{padding-top:16px}
+  h1{font-size:1.8rem}
+}
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { processHtmlClass: 'arithmatex' },
+  svg: { fontCache: 'global' },
+  startup: {
+    pageReady: function () {
+      return MathJax.startup.defaultPageReady().then(function () { window.__startApp && window.__startApp(); });
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn" type="button">☰ Temaer</button>
+<div class="app">
+  <aside>
+    <div class="brand">Oleas matte-univers<small>MATEMATIKK 1T · VG1</small></div>
+    <div class="stars"></div>
+    <nav id="nav">
+<a href="#start" data-slug="start"><span class="ic">🏠</span><span class="nt">Start</span><span class="cnt" data-cnt="start"></span></a>
+<a href="#algebra" data-slug="algebra"><span class="ic">🔢</span><span class="nt">Tall og algebra</span><span class="cnt" data-cnt="algebra"></span></a>
+<a href="#likninger" data-slug="likninger"><span class="ic">⚖️</span><span class="nt">Likninger og ulikheter</span><span class="cnt" data-cnt="likninger"></span></a>
+<a href="#funksjoner" data-slug="funksjoner"><span class="ic">📈</span><span class="nt">Funksjoner</span><span class="cnt" data-cnt="funksjoner"></span></a>
+<a href="#polynomdivisjon" data-slug="polynomdivisjon"><span class="ic">➗</span><span class="nt">Polynomdivisjon</span><span class="cnt" data-cnt="polynomdivisjon"></span></a>
+<a href="#derivasjon" data-slug="derivasjon"><span class="ic">🚀</span><span class="nt">Vekstfart og derivasjon</span><span class="cnt" data-cnt="derivasjon"></span></a>
+<a href="#trigonometri" data-slug="trigonometri"><span class="ic">📐</span><span class="nt">Trigonometri</span><span class="cnt" data-cnt="trigonometri"></span></a>
+<a href="#bevis" data-slug="bevis"><span class="ic">🧠</span><span class="nt">Bevis, modellering og Python</span><span class="cnt" data-cnt="bevis"></span></a>
+<a href="#formelark" data-slug="formelark"><span class="ic">📋</span><span class="nt">Formelark</span><span class="cnt" data-cnt="formelark"></span></a>
+    </nav>
+    <div class="side-foot">Trykk «Løst» på oppgavene du har klart, så husker siden fremgangen din i denne nettleseren.</div>
+  </aside>
+  <main id="main">
+<section class="topic" id="sec-start" data-slug="start"><h1>Velkommen til Oleas matte-univers 🌌</h1>
+<p>Dette er et oppslagsverk for <strong>matematikk 1T</strong> (Vg1 teoretisk). Her finner du regler, eksempler og oppgaver med fasit, ordnet etter temaene i læreplanen.</p>
+<h2>Slik bruker du dette</h2>
+<ol>
+<li><strong>Les regelboksen</strong> først i hvert tema. Det er dette du må kunne.</li>
+<li><strong>Gå gjennom eksemplene</strong> med blyant. Prøv å regne dem selv før du leser løsningen.</li>
+<li><strong>Løs oppgavene.</strong> De er merket <em>lett</em>, <em>middels</em> og <em>utfordring</em>. Fasiten er skjult, så åpne den først når du har prøvd.</li>
+<li><strong>Står du fast?</strong> Se på formelarket, eller spør Claude i dette prosjektet. Skriv for eksempel: <em>«Forklar oppgave 2.4 steg for steg, men ikke gi meg svaret med en gang.»</em></li>
+</ol>
+<blockquote>
+<p>💡 <strong>Tips:</strong> Matte læres best i små porsjoner. 20–30 minutter hver dag gir mer enn tre timer kvelden før prøven.</p>
+</blockquote>
+<h2>Temaene i 1T</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Hva handler det om?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Tall og algebra</td>
+<td>Potenser, standardform, kvadratsetningene, faktorisering og brøker med bokstaver</td>
+</tr>
+<tr>
+<td>2. Likninger og ulikheter</td>
+<td>Førstegrads- og andregradslikninger, abc-formelen, likningssett og ulikheter</td>
+</tr>
+<tr>
+<td>3. Funksjoner</td>
+<td>Lineære funksjoner, andregradsfunksjoner, polynomfunksjoner, rasjonale funksjoner, eksponentialfunksjoner og potensfunksjoner</td>
+</tr>
+<tr>
+<td>4. Polynomdivisjon</td>
+<td>Dele polynomer, faktorisere og løse tredjegradslikninger</td>
+</tr>
+<tr>
+<td>5. Vekstfart og derivasjon</td>
+<td>Gjennomsnittlig og momentan vekstfart, derivasjonsregler, tangenter, topp- og bunnpunkter</td>
+</tr>
+<tr>
+<td>6. Trigonometri</td>
+<td>Sinus, cosinus og tangens, arealsetningen, sinussetningen og cosinussetningen</td>
+</tr>
+<tr>
+<td>7. Bevis, modellering og programmering</td>
+<td>Hvordan man beviser noe, lager modeller og bruker Python</td>
+</tr>
+<tr>
+<td>8. Formelark</td>
+<td>Alle de viktigste reglene samlet på ett sted</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Hva læreplanen sier</h2>
+<p>Læreplanen for 1T (MAT09-02) gjelder fra 01.08.2026. Kort fortalt skal du kunne:</p>
+<ul>
+<li>løse problemer med ulike strategier, digitale verktøy og programmering</li>
+<li>lese, forstå og lage enkle <strong>bevis</strong></li>
+<li>løse <strong>likninger, likningssett og ulikheter</strong>, og forklare hvordan du tenker</li>
+<li>forklare forskjellen på en <strong>identitet</strong>, en <strong>likning</strong>, et <strong>uttrykk</strong> og en <strong>funksjon</strong></li>
+<li>se sammenhengen mellom andregradslikninger, andregradsulikheter, andregradsfunksjoner og kvadratsetningene</li>
+<li><strong>modellere</strong> situasjoner og vurdere om modellen er god</li>
+<li>beskrive <strong>polynomfunksjoner, rasjonale funksjoner, eksponentialfunksjoner og potensfunksjoner</strong></li>
+<li>bruke <strong>vekstfart</strong> og forklare hva den <strong>deriverte</strong> er</li>
+<li>forklare og bruke <strong>polynomdivisjon</strong></li>
+<li>bruke <strong>trigonometri</strong> i alle typer trekanter, og begrunne arealsetningen, sinussetningen og cosinussetningen</li>
+</ul>
+<p>Eksamen i 1T er <strong>muntlig-praktisk</strong> (fagkode MAT1022). Det betyr at det å kunne <em>forklare</em> hvordan du tenker er like viktig som å regne riktig.</p>
+<h2>Gode ressurser på nett</h2>
+<ul>
+<li><a href="https://ndla.no/f/matematikk-1t/be2ae5a11bba">NDLA – Matematikk 1T</a>: gratis læreverk med teori, videoer og oppgaver</li>
+<li><a href="https://www.udir.no/lk20/mat09-02">Læreplanen i 1T (udir.no)</a>: det offisielle dokumentet</li>
+<li><a href="https://www.geogebra.org/calculator">GeoGebra</a>: grafer, CAS og regresjon</li>
+<li><a href="https://matematikk.net">Matematikk.net</a>: forum og oppslag på norsk</li>
+</ul></section>
+<section class="topic" id="sec-algebra" data-slug="algebra"><h1>1. Tall og algebra</h1>
+<p>Algebra er å regne med bokstaver. Alt du lærer senere i 1T bygger på dette, så det lønner seg å bli trygg her.</p>
+<h2>Potensregler</h2>
+<p>En potens <span class="arithmatex">\(a^n\)</span> betyr at <span class="arithmatex">\(a\)</span> ganges med seg selv <span class="arithmatex">\(n\)</span> ganger. <span class="arithmatex">\(a\)</span> kalles <strong>grunntallet</strong> og <span class="arithmatex">\(n\)</span> <strong>eksponenten</strong>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Eksempel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(a^m \cdot a^n = a^{m+n}\)</span></td>
+<td><span class="arithmatex">\(x^3 \cdot x^4 = x^7\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\dfrac{a^m}{a^n} = a^{m-n}\)</span></td>
+<td><span class="arithmatex">\(\dfrac{x^5}{x^2} = x^3\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((a^m)^n = a^{m \cdot n}\)</span></td>
+<td><span class="arithmatex">\((x^2)^3 = x^6\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\((a \cdot b)^n = a^n \cdot b^n\)</span></td>
+<td><span class="arithmatex">\((2x)^3 = 8x^3\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}\)</span></td>
+<td><span class="arithmatex">\(\left(\dfrac{x}{3}\right)^2 = \dfrac{x^2}{9}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a^0 = 1\)</span></td>
+<td><span class="arithmatex">\(5^0 = 1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a^{-n} = \dfrac{1}{a^n}\)</span></td>
+<td><span class="arithmatex">\(2^{-3} = \dfrac{1}{8}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a^{\frac{1}{n}} = \sqrt[n]{a}\)</span></td>
+<td><span class="arithmatex">\(9^{\frac{1}{2}} = \sqrt{9} = 3\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a^{\frac{m}{n}} = \left(\sqrt[n]{a}\right)^m\)</span></td>
+<td><span class="arithmatex">\(8^{\frac{2}{3}} = 2^2 = 4\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>Vanlig feil:</strong> <span class="arithmatex">\((a+b)^2\)</span> er <strong>ikke</strong> <span class="arithmatex">\(a^2 + b^2\)</span>. Potensregelen <span class="arithmatex">\((ab)^n = a^n b^n\)</span> gjelder bare for <em>gange</em>, ikke for pluss.</p>
+</blockquote>
+<p><strong>Triks:</strong> Når tallene er forskjellige, prøv å skrive dem med samme grunntall. For eksempel er <span class="arithmatex">\(9 = 3^2\)</span> og <span class="arithmatex">\(27 = 3^3\)</span>.</p>
+<h2>Standardform</h2>
+<p>Store og små tall skrives på <strong>standardform</strong>: <span class="arithmatex">\(a \cdot 10^k\)</span>, der <span class="arithmatex">\(1 \le a &lt; 10\)</span> og <span class="arithmatex">\(k\)</span> er et helt tall.</p>
+<ul>
+<li><span class="arithmatex">\(340\,000 = 3{,}4 \cdot 10^5\)</span> (kommaet flyttes 5 plasser til venstre)</li>
+<li><span class="arithmatex">\(0{,}0072 = 7{,}2 \cdot 10^{-3}\)</span> (kommaet flyttes 3 plasser til høyre)</li>
+</ul>
+<h2>Kvadratsetningene</h2>
+<div class="arithmatex">\[(a+b)^2 = a^2 + 2ab + b^2 \qquad \text{(1. kvadratsetning)}\]</div>
+<div class="arithmatex">\[(a-b)^2 = a^2 - 2ab + b^2 \qquad \text{(2. kvadratsetning)}\]</div>
+<div class="arithmatex">\[(a+b)(a-b) = a^2 - b^2 \qquad \text{(konjugatsetningen)}\]</div>
+<p>Kvadratsetningene brukes begge veier: til å <strong>gange ut</strong> og til å <strong>faktorisere</strong>.</p>
+<h2>Faktorisering</h2>
+<p>Å faktorisere betyr å skrive et uttrykk som et produkt (noe ganget med noe). Prøv i denne rekkefølgen:</p>
+<ol>
+<li><strong>Felles faktor:</strong> <span class="arithmatex">\(6x^2 + 9x = 3x(2x + 3)\)</span></li>
+<li><strong>Kvadratsetning baklengs:</strong> <span class="arithmatex">\(x^2 - 10x + 25 = (x-5)^2\)</span> og <span class="arithmatex">\(x^2 - 16 = (x+4)(x-4)\)</span></li>
+<li><strong>Andregradsuttrykk med nullpunkter:</strong> Hvis <span class="arithmatex">\(ax^2 + bx + c = 0\)</span> har løsningene <span class="arithmatex">\(x_1\)</span> og <span class="arithmatex">\(x_2\)</span>, så er</li>
+</ol>
+<div class="arithmatex">\[ax^2 + bx + c = a(x - x_1)(x - x_2)\]</div>
+<h2>Rasjonale uttrykk (brøker med bokstaver)</h2>
+<ul>
+<li><strong>Forkorting:</strong> Du kan bare forkorte <strong>faktorer</strong>, aldri ledd. Faktoriser teller og nevner først.</li>
+</ul>
+<div class="arithmatex">\[\frac{x^2 - 9}{2x + 6} = \frac{(x+3)(x-3)}{2(x+3)} = \frac{x-3}{2}\]</div>
+<ul>
+<li><strong>Pluss og minus:</strong> Finn fellesnevner, akkurat som med vanlige brøker.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Vanlig feil:</strong> <span class="arithmatex">\(\dfrac{x + 3}{3} \ne x\)</span>. Her er <span class="arithmatex">\(3\)</span> et <em>ledd</em> i telleren, ikke en faktor.</p>
+</blockquote>
+<h2>Identitet, likning, uttrykk og funksjon</h2>
+<p>Dette er et eget kompetansemål, og det er populært på muntlig eksamen!</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Hva er det?</th>
+<th>Eksempel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uttrykk</strong></td>
+<td>En «regnestykke-bit» uten likhetstegn</td>
+<td><span class="arithmatex">\(2x + 3\)</span></td>
+</tr>
+<tr>
+<td><strong>Likning</strong></td>
+<td>To uttrykk med likhetstegn som er sanne for <em>noen</em> verdier av <span class="arithmatex">\(x\)</span></td>
+<td><span class="arithmatex">\(2x + 3 = 7\)</span> (sann bare for <span class="arithmatex">\(x = 2\)</span>)</td>
+</tr>
+<tr>
+<td><strong>Identitet</strong></td>
+<td>En likhet som er sann for <em>alle</em> verdier av <span class="arithmatex">\(x\)</span></td>
+<td><span class="arithmatex">\((x+1)^2 = x^2 + 2x + 1\)</span></td>
+</tr>
+<tr>
+<td><strong>Funksjon</strong></td>
+<td>En regel som gir nøyaktig én <span class="arithmatex">\(y\)</span>-verdi for hver <span class="arithmatex">\(x\)</span>-verdi</td>
+<td><span class="arithmatex">\(f(x) = 2x + 3\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Eksempler</h2>
+<p><strong>Eksempel 1:</strong> Forenkle <span class="arithmatex">\(\dfrac{2^5 \cdot 4^{-1}}{8}\)</span>.</p>
+<p>Skriv alt med grunntall 2: <span class="arithmatex">\(\dfrac{2^5 \cdot (2^2)^{-1}}{2^3} = \dfrac{2^5 \cdot 2^{-2}}{2^3} = 2^{5 - 2 - 3} = 2^0 = 1\)</span></p>
+<p><strong>Eksempel 2:</strong> Faktoriser <span class="arithmatex">\(x^2 + 2x - 8\)</span>.</p>
+<p>Løs <span class="arithmatex">\(x^2 + 2x - 8 = 0\)</span>. To tall som ganget blir <span class="arithmatex">\(-8\)</span> og summert blir <span class="arithmatex">\(2\)</span>: <span class="arithmatex">\(4\)</span> og <span class="arithmatex">\(-2\)</span>. Altså er <span class="arithmatex">\(x^2 + 2x - 8 = (x + 4)(x - 2)\)</span>.</p>
+<p><strong>Eksempel 3:</strong> Trekk sammen <span class="arithmatex">\(\dfrac{2}{x} + \dfrac{3}{x+1}\)</span>.</p>
+<p>Fellesnevner er <span class="arithmatex">\(x(x+1)\)</span>:</p>
+<div class="arithmatex">\[\frac{2(x+1)}{x(x+1)} + \frac{3x}{x(x+1)} = \frac{2x + 2 + 3x}{x(x+1)} = \frac{5x + 2}{x(x+1)}\]</div>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o1-1"><span class="oname">Oppgave 1.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Forenkle <span class="arithmatex">\(\dfrac{a^3 \cdot a^{-1}}{a^4}\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(a^{3 + (-1) - 4} = a^{-2} = \dfrac{1}{a^2}\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-2"><span class="oname">Oppgave 1.2</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Regn ut <span class="arithmatex">\((2x^2y)^3\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(2^3 \cdot (x^2)^3 \cdot y^3 = 8x^6y^3\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-3"><span class="oname">Oppgave 1.3</span><span class="lvl lvl-lett">lett</span></h4>
+<p>a) Skriv <span class="arithmatex">\(0{,}000045\)</span> på standardform.
+b) Regn ut <span class="arithmatex">\((3 \cdot 10^5) \cdot (4 \cdot 10^{-2})\)</span> og skriv svaret på standardform.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) <span class="arithmatex">\(4{,}5 \cdot 10^{-5}\)</span></p>
+<p>b) <span class="arithmatex">\(3 \cdot 4 \cdot 10^{5 + (-2)} = 12 \cdot 10^3 = 1{,}2 \cdot 10^4\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-4"><span class="oname">Oppgave 1.4</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Forenkle <span class="arithmatex">\(\dfrac{3^4 \cdot 9^{-1}}{27}\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Skriv med grunntall 3: <span class="arithmatex">\(\dfrac{3^4 \cdot 3^{-2}}{3^3} = 3^{4 - 2 - 3} = 3^{-1} = \dfrac{1}{3}\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-5"><span class="oname">Oppgave 1.5</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Gang ut parentesen: <span class="arithmatex">\((2x - 3)^2\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Andre kvadratsetning: <span class="arithmatex">\((2x)^2 - 2 \cdot 2x \cdot 3 + 3^2 = 4x^2 - 12x + 9\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-6"><span class="oname">Oppgave 1.6</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Faktoriser uttrykkene:
+a) <span class="arithmatex">\(4x^2 - 25\)</span>  b) <span class="arithmatex">\(x^2 + 6x + 9\)</span>  c) <span class="arithmatex">\(x^2 - x - 6\)</span></p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) Konjugatsetningen: <span class="arithmatex">\((2x + 5)(2x - 5)\)</span></p>
+<p>b) Første kvadratsetning: <span class="arithmatex">\((x + 3)^2\)</span></p>
+<p>c) Nullpunktene er <span class="arithmatex">\(x = 3\)</span> og <span class="arithmatex">\(x = -2\)</span>, så <span class="arithmatex">\((x - 3)(x + 2)\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-7"><span class="oname">Oppgave 1.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Forkort <span class="arithmatex">\(\dfrac{x^2 - 4}{x^2 + 4x + 4}\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(\dfrac{(x+2)(x-2)}{(x+2)^2} = \dfrac{x - 2}{x + 2}\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-8"><span class="oname">Oppgave 1.8</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Regn ut <span class="arithmatex">\(8^{\frac{2}{3}}\)</span> og skriv <span class="arithmatex">\(\sqrt[3]{x} \cdot \sqrt{x}\)</span> som én potens.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(8^{\frac{2}{3}} = \left(\sqrt[3]{8}\right)^2 = 2^2 = 4\)</span></p>
+<p><span class="arithmatex">\(x^{\frac{1}{3}} \cdot x^{\frac{1}{2}} = x^{\frac{1}{3} + \frac{1}{2}} = x^{\frac{5}{6}}\)</span></p>
+</details>
+<h4 class="oppg" data-id="o1-9"><span class="oname">Oppgave 1.9</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Trekk sammen og forkort <span class="arithmatex">\(\dfrac{1}{x - 1} - \dfrac{2}{x^2 - 1}\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Siden <span class="arithmatex">\(x^2 - 1 = (x+1)(x-1)\)</span>, er fellesnevner <span class="arithmatex">\((x+1)(x-1)\)</span>:</p>
+<div class="arithmatex">\[\frac{x + 1}{(x+1)(x-1)} - \frac{2}{(x+1)(x-1)} = \frac{x - 1}{(x+1)(x-1)} = \frac{1}{x + 1}\]</div>
+</details>
+<h4 class="oppg" data-id="o1-10"><span class="oname">Oppgave 1.10</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>a) Er <span class="arithmatex">\((x + 1)^2 = x^2 + 1\)</span> en identitet? Begrunn svaret.
+b) Vis at <span class="arithmatex">\((n+1)^2 - n^2\)</span> alltid er et oddetall når <span class="arithmatex">\(n\)</span> er et helt tall.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) Nei. Prøv <span class="arithmatex">\(x = 1\)</span>: venstre side blir <span class="arithmatex">\(4\)</span>, høyre side blir <span class="arithmatex">\(2\)</span>. Ett moteksempel holder for å vise at det ikke er en identitet. (Det er en <em>likning</em>, som bare er sann for <span class="arithmatex">\(x = 0\)</span>.)</p>
+<p>b) <span class="arithmatex">\((n+1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n + 1\)</span>. Et tall på formen <span class="arithmatex">\(2n + 1\)</span> er alltid et oddetall.</p>
+</details></section>
+<section class="topic" id="sec-likninger" data-slug="likninger"><h1>2. Likninger, likningssett og ulikheter</h1>
+<p>Å løse en likning betyr å finne de verdiene av <span class="arithmatex">\(x\)</span> som gjør at venstre og høyre side blir like.</p>
+<h2>Gylne regel</h2>
+<p>Du kan gjøre (nesten) hva du vil med en likning, <strong>så lenge du gjør det samme på begge sider</strong>: legge til, trekke fra, gange eller dele (men aldri dele på 0).</p>
+<h2>Førstegradslikninger</h2>
+<p>Samle <span class="arithmatex">\(x\)</span>-ledd på én side og tall på den andre.</p>
+<div class="arithmatex">\[3x + 5 = x - 7 \;\Rightarrow\; 2x = -12 \;\Rightarrow\; x = -6\]</div>
+<p><strong>Med brøker:</strong> Gang alle ledd med fellesnevneren først, så forsvinner brøkene.</p>
+<h2>Andregradslikninger</h2>
+<p>En andregradslikning kan skrives som <span class="arithmatex">\(ax^2 + bx + c = 0\)</span>, der <span class="arithmatex">\(a \ne 0\)</span>.</p>
+<h3>abc-formelen</h3>
+<div class="arithmatex">\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]</div>
+<p>Uttrykket under rottegnet, <span class="arithmatex">\(D = b^2 - 4ac\)</span>, kalles <strong>diskriminanten</strong>:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Diskriminant</th>
+<th>Antall løsninger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(D &gt; 0\)</span></td>
+<td>to løsninger</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D = 0\)</span></td>
+<td>én løsning</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D &lt; 0\)</span></td>
+<td>ingen løsning</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Snarveier (ofte raskere enn abc-formelen)</h3>
+<ul>
+<li><strong>Mangler konstantledd</strong> (<span class="arithmatex">\(c = 0\)</span>): Sett <span class="arithmatex">\(x\)</span> utenfor. <span class="arithmatex">\(x^2 - 5x = 0 \Rightarrow x(x - 5) = 0 \Rightarrow x = 0\)</span> eller <span class="arithmatex">\(x = 5\)</span>.</li>
+<li><strong>Mangler <span class="arithmatex">\(x\)</span>-ledd</strong> (<span class="arithmatex">\(b = 0\)</span>): <span class="arithmatex">\(x^2 = 9 \Rightarrow x = \pm 3\)</span>.</li>
+<li><strong>Produktregelen:</strong> Hvis <span class="arithmatex">\(A \cdot B = 0\)</span>, så er <span class="arithmatex">\(A = 0\)</span> eller <span class="arithmatex">\(B = 0\)</span>.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Vanlig feil:</strong> Del aldri på <span class="arithmatex">\(x\)</span> for å «forenkle» <span class="arithmatex">\(x^2 = 5x\)</span>. Da mister du løsningen <span class="arithmatex">\(x = 0\)</span>.</p>
+</blockquote>
+<h3>Fullstendige kvadraters metode</h3>
+<p>Denne metoden viser <em>hvorfor</em> abc-formelen virker, og knytter andregradslikninger til kvadratsetningene. Legg til det som mangler for å få et fullstendig kvadrat:</p>
+<div class="arithmatex">\[x^2 + 6x + 5 = 0 \;\Rightarrow\; x^2 + 6x + 9 = 4 \;\Rightarrow\; (x + 3)^2 = 4 \;\Rightarrow\; x + 3 = \pm 2\]</div>
+<p>Altså er <span class="arithmatex">\(x = -1\)</span> eller <span class="arithmatex">\(x = -5\)</span>. Tallet du legger til, er alltid <span class="arithmatex">\(\left(\frac{b}{2}\right)^2\)</span>.</p>
+<h2>Rasjonale likninger (x i nevneren)</h2>
+<ol>
+<li>Finn verdiene som gjør nevneren lik 0. Disse er <strong>ikke lov</strong>.</li>
+<li>Gang med fellesnevner og løs.</li>
+<li><strong>Sjekk</strong> at svaret ikke er en av de forbudte verdiene.</li>
+</ol>
+<h2>Likningssett</h2>
+<p>To likninger med to ukjente. Tre metoder:</p>
+<ul>
+<li><strong>Innsettingsmetoden:</strong> Løs den ene likningen for <span class="arithmatex">\(y\)</span> (eller <span class="arithmatex">\(x\)</span>), og sett inn i den andre.</li>
+<li><strong>Addisjonsmetoden:</strong> Legg sammen likningene slik at én ukjent forsvinner.</li>
+<li><strong>Grafisk:</strong> Tegn begge grafene. Skjæringspunktene er løsningene. (I GeoGebra: <code>Skjæring(f, g)</code>.)</li>
+</ul>
+<h2>Ulikheter</h2>
+<p>Ulikheter løses nesten som likninger, med <strong>ett viktig unntak</strong>:</p>
+<blockquote>
+<p>⚠️ Når du ganger eller deler med et <strong>negativt</strong> tall, må du <strong>snu ulikhetstegnet</strong>.
+<span class="arithmatex">\(-2x &gt; 6 \;\Rightarrow\; x &lt; -3\)</span></p>
+</blockquote>
+<h3>Andregradsulikheter og fortegnslinjer</h3>
+<ol>
+<li>Flytt alt over på én side, slik at det står 0 på den andre.</li>
+<li>Faktoriser.</li>
+<li>Lag en <strong>fortegnslinje</strong> for hver faktor, og en for produktet.</li>
+<li>Les av hvor produktet er positivt eller negativt.</li>
+</ol>
+<p><strong>Eksempel:</strong> <span class="arithmatex">\(x^2 - x - 6 \le 0\)</span>, altså <span class="arithmatex">\((x - 3)(x + 2) \le 0\)</span>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(x &lt; -2\)</span></th>
+<th><span class="arithmatex">\(-2 &lt; x &lt; 3\)</span></th>
+<th><span class="arithmatex">\(x &gt; 3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x + 2\)</span></td>
+<td>−</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x - 3\)</span></td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Produkt</td>
+<td><strong>+</strong></td>
+<td><strong>−</strong></td>
+<td><strong>+</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Produktet er negativt eller null for <span class="arithmatex">\(-2 \le x \le 3\)</span>.</p>
+<blockquote>
+<p>⚠️ For <strong>rasjonale ulikheter</strong> (x i nevneren) skal du aldri gange med nevneren, fordi du ikke vet om den er positiv eller negativ. Bruk fortegnslinje i stedet.</p>
+</blockquote>
+<h2>Eksponentiallikninger</h2>
+<p>Likninger som <span class="arithmatex">\(1{,}05^x = 2\)</span> løser du i 1T digitalt, for eksempel med CAS i GeoGebra: <code>Løs(1.05^x = 2)</code> gir <span class="arithmatex">\(x \approx 14{,}2\)</span>.</p>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o2-1"><span class="oname">Oppgave 2.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Løs likningen <span class="arithmatex">\(3(x - 2) = 2x + 5\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(3x - 6 = 2x + 5 \Rightarrow x = 11\)</span></p>
+</details>
+<h4 class="oppg" data-id="o2-2"><span class="oname">Oppgave 2.2</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs likningen <span class="arithmatex">\(\dfrac{x}{2} - \dfrac{x - 1}{3} = 2\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Gang alle ledd med 6: <span class="arithmatex">\(3x - 2(x - 1) = 12 \Rightarrow 3x - 2x + 2 = 12 \Rightarrow x = 10\)</span></p>
+<p>Pass på minustegnet foran brøken: <span class="arithmatex">\(-2(x - 1) = -2x + 2\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-3"><span class="oname">Oppgave 2.3</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Løs <span class="arithmatex">\(x^2 - 5x + 6 = 0\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\((x - 2)(x - 3) = 0\)</span>, altså <span class="arithmatex">\(x = 2\)</span> eller <span class="arithmatex">\(x = 3\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-4"><span class="oname">Oppgave 2.4</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs <span class="arithmatex">\(2x^2 + 3x - 2 = 0\)</span> med abc-formelen.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(a = 2,\ b = 3,\ c = -2\)</span>. <span class="arithmatex">\(D = 3^2 - 4 \cdot 2 \cdot (-2) = 9 + 16 = 25\)</span>.</p>
+<div class="arithmatex">\[x = \frac{-3 \pm 5}{4} \quad\Rightarrow\quad x = \frac{1}{2} \text{ eller } x = -2\]</div>
+</details>
+<h4 class="oppg" data-id="o2-5"><span class="oname">Oppgave 2.5</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Hvor mange løsninger har <span class="arithmatex">\(x^2 + 4x + 5 = 0\)</span>?</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(D = 16 - 20 = -4 &lt; 0\)</span>, så likningen har <strong>ingen</strong> løsning.</p>
+</details>
+<h4 class="oppg" data-id="o2-6"><span class="oname">Oppgave 2.6</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Løs <span class="arithmatex">\(3x^2 = 12x\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(3x^2 - 12x = 0 \Rightarrow 3x(x - 4) = 0 \Rightarrow x = 0\)</span> eller <span class="arithmatex">\(x = 4\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-7"><span class="oname">Oppgave 2.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs <span class="arithmatex">\(x^2 + 6x + 5 = 0\)</span> ved å bruke fullstendige kvadraters metode.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(x^2 + 6x = -5\)</span>. Legg til <span class="arithmatex">\(\left(\frac{6}{2}\right)^2 = 9\)</span> på begge sider: <span class="arithmatex">\((x + 3)^2 = 4\)</span>, så <span class="arithmatex">\(x + 3 = \pm 2\)</span>.</p>
+<p><span class="arithmatex">\(x = -1\)</span> eller <span class="arithmatex">\(x = -5\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-8"><span class="oname">Oppgave 2.8</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Løs likningssettet</p>
+<div class="arithmatex">\[\begin{cases} 2x + y = 7 \\ x - y = 2 \end{cases}\]</div>
+<details>
+<summary>Vis fasit</summary>
+<p>Addisjonsmetoden: Legg sammen likningene og få <span class="arithmatex">\(3x = 9\)</span>, så <span class="arithmatex">\(x = 3\)</span>. Sett inn: <span class="arithmatex">\(3 - y = 2\)</span>, så <span class="arithmatex">\(y = 1\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-9"><span class="oname">Oppgave 2.9</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs likningssettet</p>
+<div class="arithmatex">\[\begin{cases} y = x^2 - 1 \\ y = x + 1 \end{cases}\]</div>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(x^2 - 1 = x + 1 \Rightarrow x^2 - x - 2 = 0 \Rightarrow (x - 2)(x + 1) = 0\)</span>.</p>
+<p><span class="arithmatex">\(x = 2,\ y = 3\)</span> eller <span class="arithmatex">\(x = -1,\ y = 0\)</span>. Grafisk er dette de to punktene der linja skjærer parabelen.</p>
+</details>
+<h4 class="oppg" data-id="o2-10"><span class="oname">Oppgave 2.10</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Løs ulikheten <span class="arithmatex">\(5 - 2x &gt; 1\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(-2x &gt; -4\)</span>. Del på <span class="arithmatex">\(-2\)</span> og snu tegnet: <span class="arithmatex">\(x &lt; 2\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-11"><span class="oname">Oppgave 2.11</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs ulikheten <span class="arithmatex">\(x^2 - x - 6 \le 0\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\((x - 3)(x + 2) \le 0\)</span>. Fortegnslinjen (se teorien over) gir <span class="arithmatex">\(-2 \le x \le 3\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o2-12"><span class="oname">Oppgave 2.12</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Løs ulikheten <span class="arithmatex">\(\dfrac{x - 1}{x + 2} \ge 0\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Teller er 0 for <span class="arithmatex">\(x = 1\)</span>, nevner er 0 for <span class="arithmatex">\(x = -2\)</span> (ikke lov).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(x &lt; -2\)</span></th>
+<th><span class="arithmatex">\(-2 &lt; x &lt; 1\)</span></th>
+<th><span class="arithmatex">\(x &gt; 1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x - 1\)</span></td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x + 2\)</span></td>
+<td>−</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Brøk</td>
+<td>+</td>
+<td>−</td>
+<td>+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Svar: <span class="arithmatex">\(x &lt; -2\)</span> eller <span class="arithmatex">\(x \ge 1\)</span>. (<span class="arithmatex">\(x = -2\)</span> er ikke med, fordi nevneren da er 0.)</p>
+</details>
+<h4 class="oppg" data-id="o2-13"><span class="oname">Oppgave 2.13</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Løs likningen <span class="arithmatex">\(\dfrac{x}{x - 2} = \dfrac{2}{x - 2} + 3\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(x = 2\)</span> er ikke lov. Gang med <span class="arithmatex">\((x - 2)\)</span>: <span class="arithmatex">\(x = 2 + 3(x - 2) \Rightarrow x = 3x - 4 \Rightarrow x = 2\)</span>.</p>
+<p>Men <span class="arithmatex">\(x = 2\)</span> er forbudt! Likningen har derfor <strong>ingen løsning</strong>. Dette er grunnen til at du alltid må sjekke svaret.</p>
+</details></section>
+<section class="topic" id="sec-funksjoner" data-slug="funksjoner"><h1>3. Funksjoner</h1>
+<p>En <strong>funksjon</strong> er en regel som gir nøyaktig én <span class="arithmatex">\(y\)</span>-verdi for hver <span class="arithmatex">\(x\)</span>-verdi. Vi skriver <span class="arithmatex">\(f(x)\)</span>, som leses «f av x».</p>
+<h2>Viktige begreper</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Begrep</th>
+<th>Betydning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Definisjonsmengde</strong> <span class="arithmatex">\(D_f\)</span></td>
+<td>Alle <span class="arithmatex">\(x\)</span>-verdier funksjonen er definert for</td>
+</tr>
+<tr>
+<td><strong>Verdimengde</strong> <span class="arithmatex">\(V_f\)</span></td>
+<td>Alle <span class="arithmatex">\(y\)</span>-verdier funksjonen kan få</td>
+</tr>
+<tr>
+<td><strong>Nullpunkt</strong></td>
+<td>Der grafen skjærer <span class="arithmatex">\(x\)</span>-aksen: løs <span class="arithmatex">\(f(x) = 0\)</span></td>
+</tr>
+<tr>
+<td><strong>Skjæring med <span class="arithmatex">\(y\)</span>-aksen</strong></td>
+<td>Regn ut <span class="arithmatex">\(f(0)\)</span></td>
+</tr>
+<tr>
+<td><strong>Toppunkt / bunnpunkt</strong></td>
+<td>Høyeste / laveste punkt i et område (ekstremalpunkt)</td>
+</tr>
+<tr>
+<td><strong>Asymptote</strong></td>
+<td>En linje grafen nærmer seg, men aldri når</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Lineære funksjoner</h2>
+<div class="arithmatex">\[f(x) = ax + b\]</div>
+<ul>
+<li><span class="arithmatex">\(a\)</span> er <strong>stigningstallet</strong>: hvor mye <span class="arithmatex">\(y\)</span> øker når <span class="arithmatex">\(x\)</span> øker med 1.</li>
+<li><span class="arithmatex">\(b\)</span> er <strong>konstantleddet</strong>: der grafen skjærer <span class="arithmatex">\(y\)</span>-aksen.</li>
+</ul>
+<p><strong>Stigningstall mellom to punkter:</strong> <span class="arithmatex">\(a = \dfrac{y_2 - y_1}{x_2 - x_1}\)</span></p>
+<p><strong>Ettpunktsformelen:</strong> Linja gjennom <span class="arithmatex">\((x_1, y_1)\)</span> med stigningstall <span class="arithmatex">\(a\)</span> er <span class="arithmatex">\(y - y_1 = a(x - x_1)\)</span>.</p>
+<h2>Andregradsfunksjoner</h2>
+<div class="arithmatex">\[f(x) = ax^2 + bx + c\]</div>
+<p>Grafen er en <strong>parabel</strong>.</p>
+<ul>
+<li><span class="arithmatex">\(a &gt; 0\)</span>: parabelen er et «smil» 🙂 og har et <strong>bunnpunkt</strong>.</li>
+<li><span class="arithmatex">\(a &lt; 0\)</span>: parabelen er «sur» 🙁 og har et <strong>toppunkt</strong>.</li>
+<li><strong>Symmetrilinje:</strong> <span class="arithmatex">\(x = -\dfrac{b}{2a}\)</span>. Toppunktet eller bunnpunktet ligger på denne linja.</li>
+</ul>
+<p>Tre nyttige skrivemåter:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Hva du ser direkte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(f(x) = ax^2 + bx + c\)</span></td>
+<td>skjæring med <span class="arithmatex">\(y\)</span>-aksen: <span class="arithmatex">\((0, c)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f(x) = a(x - x_1)(x - x_2)\)</span></td>
+<td>nullpunktene <span class="arithmatex">\(x_1\)</span> og <span class="arithmatex">\(x_2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f(x) = a(x - p)^2 + q\)</span></td>
+<td>topp- eller bunnpunktet <span class="arithmatex">\((p, q)\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Polynomfunksjoner</h2>
+<p>En polynomfunksjon av grad <span class="arithmatex">\(n\)</span> ser slik ut: <span class="arithmatex">\(f(x) = a_n x^n + \dots + a_1 x + a_0\)</span>.</p>
+<ul>
+<li>Den har <strong>høyst <span class="arithmatex">\(n\)</span> nullpunkter</strong>.</li>
+<li>Den har <strong>høyst <span class="arithmatex">\(n - 1\)</span> topp- og bunnpunkter</strong>.</li>
+<li>Tredjegradsfunksjoner (<span class="arithmatex">\(n = 3\)</span>) går fra <span class="arithmatex">\(-\infty\)</span> til <span class="arithmatex">\(\infty\)</span> (hvis <span class="arithmatex">\(a &gt; 0\)</span>) og har ofte et toppunkt og et bunnpunkt.</li>
+</ul>
+<h2>Rasjonale funksjoner</h2>
+<p>En rasjonal funksjon er en brøk av to polynomer, for eksempel <span class="arithmatex">\(f(x) = \dfrac{2x + 1}{x - 3}\)</span>.</p>
+<ul>
+<li><strong>Vertikal asymptote:</strong> der nevneren er 0 (og telleren ikke er 0). Her: <span class="arithmatex">\(x = 3\)</span>.</li>
+<li><strong>Horisontal asymptote</strong> for <span class="arithmatex">\(f(x) = \dfrac{ax + b}{cx + d}\)</span>: <span class="arithmatex">\(y = \dfrac{a}{c}\)</span>. Her: <span class="arithmatex">\(y = 2\)</span>.</li>
+<li><strong>Definisjonsmengde:</strong> alle tall unntatt der nevneren er 0.</li>
+</ul>
+<h2>Eksponentialfunksjoner</h2>
+<div class="arithmatex">\[f(x) = a \cdot b^x\]</div>
+<ul>
+<li><span class="arithmatex">\(a\)</span> er <strong>startverdien</strong> (verdien når <span class="arithmatex">\(x = 0\)</span>).</li>
+<li><span class="arithmatex">\(b\)</span> er <strong>vekstfaktoren</strong>. <span class="arithmatex">\(b &gt; 1\)</span> betyr vekst, <span class="arithmatex">\(0 &lt; b &lt; 1\)</span> betyr nedgang.</li>
+<li><strong>Fra prosent til vekstfaktor:</strong> <span class="arithmatex">\(b = 1 + \dfrac{p}{100}\)</span>. Økning på 4 % gir <span class="arithmatex">\(b = 1{,}04\)</span>. Nedgang på 25 % gir <span class="arithmatex">\(b = 0{,}75\)</span>.</li>
+</ul>
+<p>Eksponentiell vekst betyr at noe øker med <strong>samme prosent</strong> hver gang, ikke med samme antall.</p>
+<h2>Potensfunksjoner</h2>
+<div class="arithmatex">\[f(x) = a \cdot x^b\]</div>
+<p>Her står <span class="arithmatex">\(x\)</span> i grunntallet (i eksponentialfunksjoner står <span class="arithmatex">\(x\)</span> i eksponenten). Eksempel: arealet av en sirkel, <span class="arithmatex">\(A(r) = \pi r^2\)</span>.</p>
+<h2>Modellering og regresjon</h2>
+<p>Når du har måledata, kan du finne en funksjon som passer:</p>
+<ol>
+<li>Legg inn punktene i GeoGebra (regneark eller liste).</li>
+<li>Se på punktene. Hvilken funksjonstype ligner det på?</li>
+<li>Bruk regresjon: <code>RegPoly(liste, grad)</code>, <code>RegEksp(liste)</code> eller <code>RegPot(liste)</code>.</li>
+<li><strong>Vurder modellen:</strong> Passer den til dataene? Gir den mening for store eller små <span class="arithmatex">\(x\)</span>? Over hvilket tidsrom er den gyldig?</li>
+</ol>
+<h2>Nyttige GeoGebra-kommandoer</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Kommando</th>
+<th>Gjør</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nullpunkt(f)</code></td>
+<td>finner nullpunkter</td>
+</tr>
+<tr>
+<td><code>Ekstremalpunkt(f)</code></td>
+<td>finner topp- og bunnpunkter</td>
+</tr>
+<tr>
+<td><code>Skjæring(f, g)</code></td>
+<td>finner skjæringspunkter mellom to grafer</td>
+</tr>
+<tr>
+<td><code>Asymptote(f)</code></td>
+<td>finner asymptoter</td>
+</tr>
+<tr>
+<td><code>f(x) = ... , 0 ≤ x ≤ 10</code></td>
+<td>tegner grafen bare på et intervall</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o3-1"><span class="oname">Oppgave 3.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Finn likningen for linja gjennom <span class="arithmatex">\((1, 3)\)</span> og <span class="arithmatex">\((4, 9)\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(a = \dfrac{9 - 3}{4 - 1} = 2\)</span>. Ettpunktsformelen: <span class="arithmatex">\(y - 3 = 2(x - 1)\)</span>, så <span class="arithmatex">\(y = 2x + 1\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o3-2"><span class="oname">Oppgave 3.2</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Gitt <span class="arithmatex">\(f(x) = x^2 - 4x + 3\)</span>. Finn nullpunktene, symmetrilinja, bunnpunktet og skjæringen med <span class="arithmatex">\(y\)</span>-aksen.</p>
+<details>
+<summary>Vis fasit</summary>
+<ul>
+<li>Nullpunkter: <span class="arithmatex">\((x - 1)(x - 3) = 0\)</span>, altså <span class="arithmatex">\(x = 1\)</span> og <span class="arithmatex">\(x = 3\)</span></li>
+<li>Symmetrilinje: <span class="arithmatex">\(x = -\dfrac{-4}{2 \cdot 1} = 2\)</span></li>
+<li>Bunnpunkt: <span class="arithmatex">\(f(2) = 4 - 8 + 3 = -1\)</span>, altså <span class="arithmatex">\((2, -1)\)</span></li>
+<li>Skjæring med <span class="arithmatex">\(y\)</span>-aksen: <span class="arithmatex">\((0, 3)\)</span></li>
+</ul>
+</details>
+<h4 class="oppg" data-id="o3-3"><span class="oname">Oppgave 3.3</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Skriv <span class="arithmatex">\(f(x) = 2x^2 + 8x + 5\)</span> på formen <span class="arithmatex">\(a(x - p)^2 + q\)</span>, og finn bunnpunktet.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(2x^2 + 8x + 5 = 2(x^2 + 4x) + 5 = 2(x^2 + 4x + 4) - 8 + 5 = 2(x + 2)^2 - 3\)</span></p>
+<p>Bunnpunkt: <span class="arithmatex">\((-2, -3)\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o3-4"><span class="oname">Oppgave 3.4</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Gitt <span class="arithmatex">\(f(x) = \dfrac{2x + 1}{x - 3}\)</span>. Finn definisjonsmengden, nullpunktet og asymptotene.</p>
+<details>
+<summary>Vis fasit</summary>
+<ul>
+<li><span class="arithmatex">\(D_f = \mathbb{R} \setminus \{3\}\)</span> (alle tall unntatt 3)</li>
+<li>Nullpunkt: <span class="arithmatex">\(2x + 1 = 0\)</span>, altså <span class="arithmatex">\(x = -\dfrac{1}{2}\)</span></li>
+<li>Vertikal asymptote: <span class="arithmatex">\(x = 3\)</span></li>
+<li>Horisontal asymptote: <span class="arithmatex">\(y = \dfrac{2}{1} = 2\)</span></li>
+</ul>
+</details>
+<h4 class="oppg" data-id="o3-5"><span class="oname">Oppgave 3.5</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Finn vekstfaktoren:
+a) økning på 4 %  b) nedgang på 25 %  c) økning på 120 %</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) <span class="arithmatex">\(1{,}04\)</span>  b) <span class="arithmatex">\(0{,}75\)</span>  c) <span class="arithmatex">\(2{,}20\)</span></p>
+</details>
+<h4 class="oppg" data-id="o3-6"><span class="oname">Oppgave 3.6</span><span class="lvl lvl-middels">middels</span></h4>
+<p>En bil koster 300 000 kr ny og taper 15 % av verdien hvert år.
+a) Lag en funksjon <span class="arithmatex">\(V(x)\)</span> for verdien etter <span class="arithmatex">\(x\)</span> år.
+b) Hva er bilen verdt etter 4 år?
+c) Når er bilen verdt mindre enn 100 000 kr? (Bruk gjerne GeoGebra.)</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) <span class="arithmatex">\(V(x) = 300\,000 \cdot 0{,}85^x\)</span></p>
+<p>b) <span class="arithmatex">\(V(4) = 300\,000 \cdot 0{,}85^4 \approx 156\,602\)</span> kr</p>
+<p>c) Løs <span class="arithmatex">\(300\,000 \cdot 0{,}85^x = 100\,000\)</span>. GeoGebra gir <span class="arithmatex">\(x \approx 6{,}8\)</span>. Bilen er altså verdt under 100 000 kr etter ca. 6,8 år, det vil si i løpet av det sjuende året.</p>
+</details>
+<h4 class="oppg" data-id="o3-7"><span class="oname">Oppgave 3.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Finn nullpunktene til <span class="arithmatex">\(f(x) = x^3 - 3x\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(x(x^2 - 3) = 0\)</span>, så <span class="arithmatex">\(x = 0\)</span> eller <span class="arithmatex">\(x^2 = 3\)</span>.</p>
+<p>Nullpunkter: <span class="arithmatex">\(x = 0\)</span>, <span class="arithmatex">\(x = \sqrt{3}\)</span> og <span class="arithmatex">\(x = -\sqrt{3}\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o3-8"><span class="oname">Oppgave 3.8</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Arealet av en sirkel er <span class="arithmatex">\(A(r) = \pi r^2\)</span>. Hva skjer med arealet når radien dobles?</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(A(2r) = \pi (2r)^2 = 4\pi r^2 = 4 \cdot A(r)\)</span>. Arealet blir <strong>fire ganger</strong> så stort.</p>
+</details>
+<h4 class="oppg" data-id="o3-9"><span class="oname">Oppgave 3.9</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Tabellen viser antall følgere på en konto:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>År</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Følgere (tusen)</td>
+<td>50</td>
+<td>60</td>
+<td>72</td>
+<td>86,4</td>
+</tr>
+</tbody>
+</table></div>
+<p>a) Hvilken funksjonstype passer? Begrunn.
+b) Finn en modell.
+c) Hvor mange følgere gir modellen etter 10 år? Er det realistisk?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) <span class="arithmatex">\(60 / 50 = 1{,}2\)</span>, <span class="arithmatex">\(72 / 60 = 1{,}2\)</span> og <span class="arithmatex">\(86{,}4 / 72 = 1{,}2\)</span>. Samme prosentvise økning hvert år, så det er en <strong>eksponentialfunksjon</strong>.</p>
+<p>b) <span class="arithmatex">\(F(x) = 50 \cdot 1{,}2^x\)</span> (tusen følgere). <code>RegEksp</code> i GeoGebra gir det samme.</p>
+<p>c) <span class="arithmatex">\(F(10) = 50 \cdot 1{,}2^{10} \approx 309{,}6\)</span>, altså ca. 310 000 følgere. Det er usikkert om veksten kan fortsette så lenge. Eksponentiell vekst flater ofte ut i virkeligheten, så modellen er nok mest pålitelig for de nærmeste årene.</p>
+</details></section>
+<section class="topic" id="sec-polynomdivisjon" data-slug="polynomdivisjon"><h1>4. Polynomdivisjon</h1>
+<p>Polynomdivisjon er vanlig divisjon (som <span class="arithmatex">\(847 : 7\)</span>), bare med bokstaver. Den brukes til å <strong>faktorisere</strong> polynomer og <strong>løse likninger</strong> av høyere grad.</p>
+<h2>Nullpunktsetningen (faktorteoremet)</h2>
+<blockquote>
+<p>Hvis <span class="arithmatex">\(P(a) = 0\)</span>, så går divisjonen <span class="arithmatex">\(P(x) : (x - a)\)</span> opp, og <span class="arithmatex">\((x - a)\)</span> er en faktor i <span class="arithmatex">\(P(x)\)</span>.</p>
+</blockquote>
+<p>Det motsatte gjelder også: Hvis <span class="arithmatex">\((x - a)\)</span> er en faktor, så er <span class="arithmatex">\(P(a) = 0\)</span>.</p>
+<p><strong>Restsetningen:</strong> Når du deler <span class="arithmatex">\(P(x)\)</span> på <span class="arithmatex">\((x - a)\)</span>, blir resten lik <span class="arithmatex">\(P(a)\)</span>.</p>
+<h2>Slik gjør du polynomdivisjon</h2>
+<p><strong>Eksempel:</strong> <span class="arithmatex">\((x^3 - 2x^2 - 5x + 6) : (x - 1)\)</span></p>
+<p>Sjekk først: <span class="arithmatex">\(P(1) = 1 - 2 - 5 + 6 = 0\)</span>. Divisjonen går altså opp.</p>
+<p>Gjenta disse fire stegene til du er ferdig:</p>
+<ol>
+<li><strong>Del</strong> første ledd i det som er igjen på <span class="arithmatex">\(x\)</span>: <span class="arithmatex">\(x^3 : x = x^2\)</span></li>
+<li><strong>Gang</strong> svaret med hele divisoren: <span class="arithmatex">\(x^2(x - 1) = x^3 - x^2\)</span></li>
+<li><strong>Trekk fra:</strong> <span class="arithmatex">\((x^3 - 2x^2) - (x^3 - x^2) = -x^2\)</span></li>
+<li><strong>Flytt ned</strong> neste ledd: <span class="arithmatex">\(-x^2 - 5x\)</span></li>
+</ol>
+<pre><code>  (x³ − 2x² − 5x + 6) : (x − 1) = x² − x − 6
+ −(x³ −  x²)
+  ─────────
+       −x² − 5x
+      −(−x² +  x)
+       ─────────
+             −6x + 6
+            −(−6x + 6)
+             ─────────
+                     0
+</code></pre>
+<p>Altså er <span class="arithmatex">\(x^3 - 2x^2 - 5x + 6 = (x - 1)(x^2 - x - 6) = (x - 1)(x - 3)(x + 2)\)</span>.</p>
+<h2>Strategi for å løse tredjegradslikninger</h2>
+<ol>
+<li><strong>Gjett en løsning.</strong> Prøv tall som går opp i konstantleddet: <span class="arithmatex">\(\pm 1, \pm 2, \pm 3, \dots\)</span></li>
+<li><strong>Polynomdivisjon</strong> med <span class="arithmatex">\((x - \text{løsningen})\)</span>. Da får du et andregradsuttrykk.</li>
+<li><strong>Løs andregradslikningen</strong> med abc-formelen eller faktorisering.</li>
+</ol>
+<h2>Divisjon med rest</h2>
+<p>Når divisjonen ikke går opp, skriver vi</p>
+<div class="arithmatex">\[P(x) = (x - a) \cdot Q(x) + R \qquad\text{eller}\qquad \frac{P(x)}{x - a} = Q(x) + \frac{R}{x - a}\]</div>
+<p>Dette er nyttig for rasjonale funksjoner. Hvis telleren har høyere grad enn nevneren, får grafen en <strong>skrå asymptote</strong> <span class="arithmatex">\(y = Q(x)\)</span>.</p>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o4-1"><span class="oname">Oppgave 4.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Utfør divisjonen <span class="arithmatex">\((x^2 + 5x + 6) : (x + 2)\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(x + 3\)</span>. (Kontroll: <span class="arithmatex">\((x + 2)(x + 3) = x^2 + 5x + 6\)</span> ✓)</p>
+</details>
+<h4 class="oppg" data-id="o4-2"><span class="oname">Oppgave 4.2</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Utfør divisjonen <span class="arithmatex">\((x^3 - 8) : (x - 2)\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Tips: Skriv <span class="arithmatex">\(x^3 + 0x^2 + 0x - 8\)</span>, så du har plass til alle ledd.</p>
+<p>Svar: <span class="arithmatex">\(x^2 + 2x + 4\)</span></p>
+</details>
+<h4 class="oppg" data-id="o4-3"><span class="oname">Oppgave 4.3</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Utfør divisjonen <span class="arithmatex">\((2x^3 + 3x^2 - x + 5) : (x + 1)\)</span>. Hva blir resten? Kontroller resten med restsetningen.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\((2x^3 + 3x^2 - x + 5) = (x + 1)(2x^2 + x - 2) + 7\)</span></p>
+<p>Resten er 7. Kontroll: <span class="arithmatex">\(P(-1) = -2 + 3 + 1 + 5 = 7\)</span> ✓</p>
+</details>
+<h4 class="oppg" data-id="o4-4"><span class="oname">Oppgave 4.4</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Løs likningen <span class="arithmatex">\(x^3 - 6x^2 + 11x - 6 = 0\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Prøv <span class="arithmatex">\(x = 1\)</span>: <span class="arithmatex">\(1 - 6 + 11 - 6 = 0\)</span> ✓</p>
+<p><span class="arithmatex">\((x^3 - 6x^2 + 11x - 6) : (x - 1) = x^2 - 5x + 6 = (x - 2)(x - 3)\)</span></p>
+<p>Løsninger: <span class="arithmatex">\(x = 1\)</span>, <span class="arithmatex">\(x = 2\)</span> og <span class="arithmatex">\(x = 3\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o4-5"><span class="oname">Oppgave 4.5</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Faktoriser <span class="arithmatex">\(P(x) = x^3 + x^2 - 4x - 4\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Enten med polynomdivisjon (<span class="arithmatex">\(P(-1) = 0\)</span>), eller ved å gruppere:</p>
+<p><span class="arithmatex">\(x^2(x + 1) - 4(x + 1) = (x + 1)(x^2 - 4) = (x + 1)(x - 2)(x + 2)\)</span></p>
+</details>
+<h4 class="oppg" data-id="o4-6"><span class="oname">Oppgave 4.6</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Løs ulikheten <span class="arithmatex">\(x^3 - 6x^2 + 11x - 6 &gt; 0\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Fra oppgave 4.4: <span class="arithmatex">\((x - 1)(x - 2)(x - 3) &gt; 0\)</span>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(x &lt; 1\)</span></th>
+<th><span class="arithmatex">\(1 &lt; x &lt; 2\)</span></th>
+<th><span class="arithmatex">\(2 &lt; x &lt; 3\)</span></th>
+<th><span class="arithmatex">\(x &gt; 3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x - 1\)</span></td>
+<td>−</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x - 2\)</span></td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x - 3\)</span></td>
+<td>−</td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Produkt</td>
+<td>−</td>
+<td>+</td>
+<td>−</td>
+<td>+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Svar: <span class="arithmatex">\(1 &lt; x &lt; 2\)</span> eller <span class="arithmatex">\(x &gt; 3\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o4-7"><span class="oname">Oppgave 4.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Bestem <span class="arithmatex">\(k\)</span> slik at <span class="arithmatex">\((x - 2)\)</span> er en faktor i <span class="arithmatex">\(P(x) = x^3 + kx - 4\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Krav: <span class="arithmatex">\(P(2) = 0\)</span>. <span class="arithmatex">\(8 + 2k - 4 = 0 \Rightarrow k = -2\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o4-8"><span class="oname">Oppgave 4.8</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Skriv <span class="arithmatex">\(f(x) = \dfrac{x^2 + 1}{x - 1}\)</span> på formen <span class="arithmatex">\(Q(x) + \dfrac{R}{x - 1}\)</span>. Hva blir den skrå asymptoten?</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\((x^2 + 1) : (x - 1) = x + 1\)</span> med rest <span class="arithmatex">\(2\)</span>. Altså er <span class="arithmatex">\(f(x) = x + 1 + \dfrac{2}{x - 1}\)</span>.</p>
+<p>Når <span class="arithmatex">\(x\)</span> blir veldig stor, går <span class="arithmatex">\(\dfrac{2}{x - 1}\)</span> mot 0, så den skrå asymptoten er <span class="arithmatex">\(y = x + 1\)</span>. Den vertikale asymptoten er <span class="arithmatex">\(x = 1\)</span>.</p>
+</details></section>
+<section class="topic" id="sec-derivasjon" data-slug="derivasjon"><h1>5. Vekstfart og derivasjon</h1>
+<p>Den deriverte forteller <strong>hvor fort noe endrer seg</strong> akkurat nå. Det er som speedometeret i en bil.</p>
+<h2>Gjennomsnittlig vekstfart</h2>
+<p>Hvor mye endrer funksjonen seg i gjennomsnitt per enhet fra <span class="arithmatex">\(x = a\)</span> til <span class="arithmatex">\(x = b\)</span>?</p>
+<div class="arithmatex">\[\text{gjennomsnittlig vekstfart} = \frac{f(b) - f(a)}{b - a}\]</div>
+<p>Geometrisk er dette <strong>stigningstallet til linja (sekanten)</strong> gjennom punktene <span class="arithmatex">\((a, f(a))\)</span> og <span class="arithmatex">\((b, f(b))\)</span>.</p>
+<h2>Momentan vekstfart og den deriverte</h2>
+<p>La de to punktene komme nærmere og nærmere hverandre. Da blir sekanten til en <strong>tangent</strong>. Stigningstallet til tangenten i <span class="arithmatex">\(x = a\)</span> kaller vi den <strong>deriverte</strong>, <span class="arithmatex">\(f'(a)\)</span>.</p>
+<p><strong>Definisjonen av den deriverte:</strong></p>
+<div class="arithmatex">\[f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}\]</div>
+<p><strong>Eksempel:</strong> For <span class="arithmatex">\(f(x) = x^2\)</span>:</p>
+<div class="arithmatex">\[\frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h} = \frac{2xh + h^2}{h} = 2x + h \;\xrightarrow{h \to 0}\; 2x\]</div>
+<p>Altså er <span class="arithmatex">\(f'(x) = 2x\)</span>.</p>
+<h2>Derivasjonsregler</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Derivert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(c\)</span> (konstant)</td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x^n\)</span></td>
+<td><span class="arithmatex">\(n \cdot x^{n-1}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(c \cdot f(x)\)</span></td>
+<td><span class="arithmatex">\(c \cdot f'(x)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f(x) + g(x)\)</span></td>
+<td><span class="arithmatex">\(f'(x) + g'(x)\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Eksempel:</strong> <span class="arithmatex">\(f(x) = 4x^3 - 5x^2 + 2x - 7\)</span> gir <span class="arithmatex">\(f'(x) = 12x^2 - 10x + 2\)</span>.</p>
+<h2>Tangentlikning</h2>
+<p>Tangenten til <span class="arithmatex">\(f\)</span> i punktet <span class="arithmatex">\(x = a\)</span>:</p>
+<div class="arithmatex">\[y - f(a) = f'(a)(x - a)\]</div>
+<p><strong>Oppskrift:</strong> (1) Regn ut <span class="arithmatex">\(f(a)\)</span>. (2) Finn <span class="arithmatex">\(f'(x)\)</span> og regn ut <span class="arithmatex">\(f'(a)\)</span>. (3) Sett inn i formelen.</p>
+<h2>Drøfting: hvor stiger og synker grafen?</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Fortegn til <span class="arithmatex">\(f'(x)\)</span></th>
+<th>Grafen …</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(f'(x) &gt; 0\)</span></td>
+<td>stiger</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f'(x) &lt; 0\)</span></td>
+<td>synker</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f'(x) = 0\)</span></td>
+<td>har horisontal tangent (mulig topp- eller bunnpunkt)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Oppskrift for topp- og bunnpunkter:</strong>
+1. Finn <span class="arithmatex">\(f'(x)\)</span>.
+2. Løs <span class="arithmatex">\(f'(x) = 0\)</span>.
+3. Lag fortegnslinje for <span class="arithmatex">\(f'(x)\)</span>.
+4. Fra + til − gir <strong>toppunkt</strong>. Fra − til + gir <strong>bunnpunkt</strong>.
+5. Regn ut <span class="arithmatex">\(y\)</span>-verdien ved å sette inn i <span class="arithmatex">\(f(x)\)</span> (ikke i <span class="arithmatex">\(f'(x)\)</span>!).</p>
+<h2>Tolkning med enheter</h2>
+<p>Hvis <span class="arithmatex">\(h(t)\)</span> er høyden i meter etter <span class="arithmatex">\(t\)</span> sekunder, er <span class="arithmatex">\(h'(t)\)</span> farten i <strong>meter per sekund</strong>. Enheten til den deriverte er alltid</p>
+<div class="arithmatex">\[\frac{\text{enheten til } y}{\text{enheten til } x}\]</div>
+<blockquote>
+<p>💡 <strong>På muntlig eksamen:</strong> Kunne forklare med egne ord: «Den deriverte er stigningstallet til tangenten, og den forteller hvor raskt funksjonen endrer seg i et bestemt punkt.»</p>
+</blockquote>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o5-1"><span class="oname">Oppgave 5.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Finn den gjennomsnittlige vekstfarten til <span class="arithmatex">\(f(x) = x^2\)</span> fra <span class="arithmatex">\(x = 1\)</span> til <span class="arithmatex">\(x = 3\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(\dfrac{f(3) - f(1)}{3 - 1} = \dfrac{9 - 1}{2} = 4\)</span></p>
+</details>
+<h4 class="oppg" data-id="o5-2"><span class="oname">Oppgave 5.2</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Deriver <span class="arithmatex">\(f(x) = 3x^4 - 2x^2 + 5x - 7\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(f'(x) = 12x^3 - 4x + 5\)</span></p>
+</details>
+<h4 class="oppg" data-id="o5-3"><span class="oname">Oppgave 5.3</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Deriver <span class="arithmatex">\(g(x) = \dfrac{1}{3}x^3 - 4x\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(g'(x) = \dfrac{1}{3} \cdot 3x^2 - 4 = x^2 - 4\)</span></p>
+</details>
+<h4 class="oppg" data-id="o5-4"><span class="oname">Oppgave 5.4</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Finn likningen for tangenten til <span class="arithmatex">\(f(x) = x^2 - 3x\)</span> i punktet der <span class="arithmatex">\(x = 1\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(f(1) = 1 - 3 = -2\)</span>. <span class="arithmatex">\(f'(x) = 2x - 3\)</span>, så <span class="arithmatex">\(f'(1) = -1\)</span>.</p>
+<p><span class="arithmatex">\(y - (-2) = -1(x - 1) \Rightarrow y = -x - 1\)</span></p>
+</details>
+<h4 class="oppg" data-id="o5-5"><span class="oname">Oppgave 5.5</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Finn punktet på grafen til <span class="arithmatex">\(f(x) = x^2 - 4x + 1\)</span> der tangenten er horisontal.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(f'(x) = 2x - 4 = 0 \Rightarrow x = 2\)</span>. <span class="arithmatex">\(f(2) = 4 - 8 + 1 = -3\)</span>. Punktet er <span class="arithmatex">\((2, -3)\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o5-6"><span class="oname">Oppgave 5.6</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Gitt <span class="arithmatex">\(f(x) = x^3 - 3x^2\)</span>. Finn hvor grafen stiger og synker, og finn topp- og bunnpunktene.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(f'(x) = 3x^2 - 6x = 3x(x - 2)\)</span>. Nullpunkter: <span class="arithmatex">\(x = 0\)</span> og <span class="arithmatex">\(x = 2\)</span>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(x &lt; 0\)</span></th>
+<th><span class="arithmatex">\(0 &lt; x &lt; 2\)</span></th>
+<th><span class="arithmatex">\(x &gt; 2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(3x\)</span></td>
+<td>−</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x - 2\)</span></td>
+<td>−</td>
+<td>−</td>
+<td>+</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f'(x)\)</span></td>
+<td>+</td>
+<td>−</td>
+<td>+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Grafen stiger for <span class="arithmatex">\(x &lt; 0\)</span> og <span class="arithmatex">\(x &gt; 2\)</span>, og synker for <span class="arithmatex">\(0 &lt; x &lt; 2\)</span>.</p>
+<p>Toppunkt: <span class="arithmatex">\((0, f(0)) = (0, 0)\)</span>. Bunnpunkt: <span class="arithmatex">\((2, f(2)) = (2, 8 - 12) = (2, -4)\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o5-7"><span class="oname">Oppgave 5.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Temperaturen en dag er gitt ved <span class="arithmatex">\(T(t) = -0{,}5t^2 + 4t + 10\)</span>, der <span class="arithmatex">\(T\)</span> er i °C og <span class="arithmatex">\(t\)</span> er timer etter kl. 08.
+a) Finn <span class="arithmatex">\(T'(2)\)</span> og forklar hva tallet betyr.
+b) Når er det varmest, og hvor varmt er det da?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) <span class="arithmatex">\(T'(t) = -t + 4\)</span>, så <span class="arithmatex">\(T'(2) = 2\)</span>. Klokka 10 stiger temperaturen med 2 °C per time.</p>
+<p>b) <span class="arithmatex">\(T'(t) = 0\)</span> gir <span class="arithmatex">\(t = 4\)</span>, altså kl. 12. <span class="arithmatex">\(T(4) = -8 + 16 + 10 = 18\)</span> °C.</p>
+</details>
+<h4 class="oppg" data-id="o5-8"><span class="oname">Oppgave 5.8</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Bruk definisjonen av den deriverte til å vise at <span class="arithmatex">\(f(x) = 3x^2\)</span> har <span class="arithmatex">\(f'(x) = 6x\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<div class="arithmatex">\[\frac{3(x + h)^2 - 3x^2}{h} = \frac{3x^2 + 6xh + 3h^2 - 3x^2}{h} = \frac{6xh + 3h^2}{h} = 6x + 3h\]</div>
+<p>Når <span class="arithmatex">\(h \to 0\)</span>, går dette mot <span class="arithmatex">\(6x\)</span>. Altså er <span class="arithmatex">\(f'(x) = 6x\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o5-9"><span class="oname">Oppgave 5.9</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Du har 40 meter gjerde og skal lage en rektangulær innhegning inntil en vegg (veggen trenger ikke gjerde). Hvor stort kan arealet bli?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>La <span class="arithmatex">\(x\)</span> være lengden på de to sidene som står ut fra veggen. Siden parallelt med veggen blir <span class="arithmatex">\(40 - 2x\)</span>.</p>
+<p><span class="arithmatex">\(A(x) = x(40 - 2x) = 40x - 2x^2\)</span>, der <span class="arithmatex">\(0 &lt; x &lt; 20\)</span>.</p>
+<p><span class="arithmatex">\(A'(x) = 40 - 4x = 0 \Rightarrow x = 10\)</span>. Fortegnet til <span class="arithmatex">\(A'\)</span> går fra + til −, så dette er et toppunkt.</p>
+<p><span class="arithmatex">\(A(10) = 10 \cdot 20 = 200\)</span>. Største areal er <strong>200 m²</strong> (10 m × 20 m).</p>
+</details></section>
+<section class="topic" id="sec-trigonometri" data-slug="trigonometri"><h1>6. Trigonometri</h1>
+<p>Trigonometri handler om sammenhengen mellom <strong>vinkler</strong> og <strong>sider</strong> i trekanter.</p>
+<blockquote>
+<p>⚠️ <strong>Sjekk alltid at kalkulatoren står i grader (DEG)</strong>, ikke radianer (RAD). Det er den vanligste feilen i trigonometri.</p>
+</blockquote>
+<h2>Navn i trekanten</h2>
+<p>Vi kaller hjørnene <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span> og <span class="arithmatex">\(C\)</span>. Siden <strong>rett overfor</strong> hjørnet <span class="arithmatex">\(A\)</span> heter <span class="arithmatex">\(a\)</span>, siden overfor <span class="arithmatex">\(B\)</span> heter <span class="arithmatex">\(b\)</span>, og siden overfor <span class="arithmatex">\(C\)</span> heter <span class="arithmatex">\(c\)</span>.</p>
+<h2>Rettvinklede trekanter</h2>
+<p>Sett fra vinkelen <span class="arithmatex">\(v\)</span>:</p>
+<div class="arithmatex">\[\sin v = \frac{\text{motstående katet}}{\text{hypotenus}}\]</div>
+<div class="arithmatex">\[\cos v = \frac{\text{hosliggende katet}}{\text{hypotenus}}\]</div>
+<div class="arithmatex">\[\tan v = \frac{\text{motstående katet}}{\text{hosliggende katet}}\]</div>
+<p><strong>Huskeregel:</strong> <em>Mo-Hy, Ho-Hy, Mo-Ho</em> (sinus, cosinus, tangens).</p>
+<p><strong>Pytagoras:</strong> <span class="arithmatex">\(a^2 + b^2 = c^2\)</span>, der <span class="arithmatex">\(c\)</span> er hypotenusen.</p>
+<p><strong>Finne en vinkel:</strong> Bruk den omvendte funksjonen. Hvis <span class="arithmatex">\(\sin v = 0{,}5\)</span>, så er <span class="arithmatex">\(v = \sin^{-1}(0{,}5) = 30°\)</span>.</p>
+<h2>Eksakte verdier</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(v\)</span></th>
+<th><span class="arithmatex">\(0°\)</span></th>
+<th><span class="arithmatex">\(30°\)</span></th>
+<th><span class="arithmatex">\(45°\)</span></th>
+<th><span class="arithmatex">\(60°\)</span></th>
+<th><span class="arithmatex">\(90°\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\sin v\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{2}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{2}\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\cos v\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{2}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\tan v\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{3}\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(\sqrt{3}\)</span></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>Disse kommer fra to «halve» trekanter: et halvt kvadrat (45°-45°-90°) og en halv likesidet trekant (30°-60°-90°).</p>
+<h2>Enhetssirkelen (vinkler over 90°)</h2>
+<p>Tegn en sirkel med radius 1 og sentrum i origo. Et punkt på sirkelen som danner vinkelen <span class="arithmatex">\(v\)</span> med den positive <span class="arithmatex">\(x\)</span>-aksen, har koordinatene</p>
+<div class="arithmatex">\[(\cos v,\ \sin v)\]</div>
+<p>Slik definerer vi sinus og cosinus også for stumpe vinkler. To viktige regler:</p>
+<div class="arithmatex">\[\sin(180° - v) = \sin v \qquad\qquad \cos(180° - v) = -\cos v\]</div>
+<blockquote>
+<p>⚠️ Likningen <span class="arithmatex">\(\sin v = k\)</span> (med <span class="arithmatex">\(0 &lt; k &lt; 1\)</span>) har <strong>to</strong> løsninger mellom <span class="arithmatex">\(0°\)</span> og <span class="arithmatex">\(180°\)</span>: <span class="arithmatex">\(v\)</span> og <span class="arithmatex">\(180° - v\)</span>. Kalkulatoren viser bare den spisse.</p>
+</blockquote>
+<h2>Arealsetningen</h2>
+<div class="arithmatex">\[A = \frac{1}{2} \cdot a \cdot b \cdot \sin C\]</div>
+<p>To sider og <strong>vinkelen mellom dem</strong>.</p>
+<h2>Sinussetningen</h2>
+<div class="arithmatex">\[\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}\]</div>
+<p>Brukes når du kjenner en side og vinkelen <strong>rett overfor</strong>, pluss én side eller vinkel til.</p>
+<h2>Cosinussetningen</h2>
+<div class="arithmatex">\[a^2 = b^2 + c^2 - 2bc \cdot \cos A\]</div>
+<p>Brukes når du kjenner <strong>tre sider</strong>, eller <strong>to sider og vinkelen mellom dem</strong>.</p>
+<h2>Hvilken setning skal jeg bruke?</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Du kjenner …</th>
+<th>Bruk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tre sider</td>
+<td>cosinussetningen</td>
+</tr>
+<tr>
+<td>to sider og vinkelen mellom dem</td>
+<td>cosinussetningen (eller arealsetningen for areal)</td>
+</tr>
+<tr>
+<td>to vinkler og en side</td>
+<td>sinussetningen (finn først den tredje vinkelen: summen er 180°)</td>
+</tr>
+<tr>
+<td>to sider og en vinkel som <em>ikke</em> er mellom dem</td>
+<td>sinussetningen (pass på at det kan finnes to trekanter!)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Bevisene (kompetansemål: «begrunne»)</h2>
+<p><strong>Arealsetningen:</strong> Tegn høyden <span class="arithmatex">\(h\)</span> fra <span class="arithmatex">\(B\)</span> ned på siden <span class="arithmatex">\(b\)</span>. I den rettvinklede trekanten med hypotenus <span class="arithmatex">\(a\)</span> er <span class="arithmatex">\(\sin C = \dfrac{h}{a}\)</span>, så <span class="arithmatex">\(h = a \sin C\)</span>. Arealet er <span class="arithmatex">\(\dfrac{1}{2} \cdot \text{grunnlinje} \cdot \text{høyde} = \dfrac{1}{2} \cdot b \cdot a \sin C\)</span>.</p>
+<p><strong>Sinussetningen:</strong> Arealet kan skrives på tre måter med arealsetningen:</p>
+<div class="arithmatex">\[\frac{1}{2}bc\sin A = \frac{1}{2}ac\sin B = \frac{1}{2}ab\sin C\]</div>
+<p>Gang med 2 og del på <span class="arithmatex">\(abc\)</span>: <span class="arithmatex">\(\dfrac{\sin A}{a} = \dfrac{\sin B}{b} = \dfrac{\sin C}{c}\)</span>. Snu brøkene, så er du ferdig.</p>
+<p><strong>Cosinussetningen</strong> (for spiss vinkel <span class="arithmatex">\(A\)</span>): Tegn høyden <span class="arithmatex">\(h\)</span> fra <span class="arithmatex">\(C\)</span> ned på <span class="arithmatex">\(c\)</span>. Den deler <span class="arithmatex">\(c\)</span> i to deler: <span class="arithmatex">\(x = b\cos A\)</span> og <span class="arithmatex">\(c - x\)</span>. Pytagoras i de to rettvinklede trekantene gir <span class="arithmatex">\(h^2 = b^2 - x^2\)</span> og <span class="arithmatex">\(a^2 = h^2 + (c - x)^2\)</span>. Sett inn:</p>
+<div class="arithmatex">\[a^2 = b^2 - x^2 + c^2 - 2cx + x^2 = b^2 + c^2 - 2c \cdot b\cos A\]</div>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o6-1"><span class="oname">Oppgave 6.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>I en rettvinklet trekant er hypotenusen 10 cm og en av vinklene 30°. Finn lengden av katetene.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Motstående katet: <span class="arithmatex">\(10 \cdot \sin 30° = 10 \cdot \frac{1}{2} = 5\)</span> cm</p>
+<p>Hosliggende katet: <span class="arithmatex">\(10 \cdot \cos 30° = 10 \cdot \frac{\sqrt{3}}{2} = 5\sqrt{3} \approx 8{,}66\)</span> cm</p>
+</details>
+<h4 class="oppg" data-id="o6-2"><span class="oname">Oppgave 6.2</span><span class="lvl lvl-lett">lett</span></h4>
+<p>En rettvinklet trekant har kateter på 6 cm og 8 cm. Finn hypotenusen og den minste vinkelen.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Hypotenus: <span class="arithmatex">\(\sqrt{36 + 64} = 10\)</span> cm</p>
+<p>Minste vinkel står overfor den korteste kateten: <span class="arithmatex">\(\tan v = \dfrac{6}{8}\)</span>, så <span class="arithmatex">\(v \approx 36{,}9°\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-3"><span class="oname">Oppgave 6.3</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Finn eksakt verdi av <span class="arithmatex">\(\sin 120°\)</span>, <span class="arithmatex">\(\cos 120°\)</span> og <span class="arithmatex">\(\cos 135°\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(\sin 120° = \sin 60° = \dfrac{\sqrt{3}}{2}\)</span></p>
+<p><span class="arithmatex">\(\cos 120° = -\cos 60° = -\dfrac{1}{2}\)</span></p>
+<p><span class="arithmatex">\(\cos 135° = -\cos 45° = -\dfrac{\sqrt{2}}{2}\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-4"><span class="oname">Oppgave 6.4</span><span class="lvl lvl-lett">lett</span></h4>
+<p>I trekant <span class="arithmatex">\(ABC\)</span> er <span class="arithmatex">\(a = 7\)</span>, <span class="arithmatex">\(b = 9\)</span> og <span class="arithmatex">\(C = 40°\)</span>. Finn arealet.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(A = \dfrac{1}{2} \cdot 7 \cdot 9 \cdot \sin 40° \approx 20{,}2\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-5"><span class="oname">Oppgave 6.5</span><span class="lvl lvl-middels">middels</span></h4>
+<p>I trekant <span class="arithmatex">\(ABC\)</span> er <span class="arithmatex">\(A = 50°\)</span>, <span class="arithmatex">\(B = 70°\)</span> og <span class="arithmatex">\(a = 8\)</span>. Finn <span class="arithmatex">\(b\)</span> og <span class="arithmatex">\(c\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(C = 180° - 50° - 70° = 60°\)</span></p>
+<p><span class="arithmatex">\(b = \dfrac{8 \cdot \sin 70°}{\sin 50°} \approx 9{,}81\)</span></p>
+<p><span class="arithmatex">\(c = \dfrac{8 \cdot \sin 60°}{\sin 50°} \approx 9{,}04\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-6"><span class="oname">Oppgave 6.6</span><span class="lvl lvl-middels">middels</span></h4>
+<p>I trekant <span class="arithmatex">\(ABC\)</span> er <span class="arithmatex">\(b = 5\)</span>, <span class="arithmatex">\(c = 7\)</span> og <span class="arithmatex">\(A = 60°\)</span>. Finn <span class="arithmatex">\(a\)</span>.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(a^2 = 25 + 49 - 2 \cdot 5 \cdot 7 \cdot \cos 60° = 74 - 35 = 39\)</span></p>
+<p><span class="arithmatex">\(a = \sqrt{39} \approx 6{,}24\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-7"><span class="oname">Oppgave 6.7</span><span class="lvl lvl-middels">middels</span></h4>
+<p>En trekant har sidene 5, 6 og 7. Finn den største vinkelen.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Største vinkel står overfor lengste side (7). Kall den <span class="arithmatex">\(C\)</span>.</p>
+<p><span class="arithmatex">\(\cos C = \dfrac{5^2 + 6^2 - 7^2}{2 \cdot 5 \cdot 6} = \dfrac{12}{60} = 0{,}2\)</span>, så <span class="arithmatex">\(C \approx 78{,}5°\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-8"><span class="oname">Oppgave 6.8</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>I trekant <span class="arithmatex">\(ABC\)</span> er <span class="arithmatex">\(a = 6\)</span>, <span class="arithmatex">\(b = 8\)</span> og <span class="arithmatex">\(A = 40°\)</span>. Finn vinkel <span class="arithmatex">\(B\)</span>. Hvor mange trekanter finnes det?</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(\sin B = \dfrac{8 \cdot \sin 40°}{6} \approx 0{,}857\)</span></p>
+<p>Kalkulatoren gir <span class="arithmatex">\(B \approx 59{,}0°\)</span>. Men <span class="arithmatex">\(B = 180° - 59{,}0° = 121{,}0°\)</span> er også en løsning.</p>
+<p>Sjekk: <span class="arithmatex">\(40° + 121{,}0° = 161{,}0° &lt; 180°\)</span>, så begge er mulige. Det finnes <strong>to trekanter</strong> (med <span class="arithmatex">\(C \approx 81{,}0°\)</span> eller <span class="arithmatex">\(C \approx 19{,}0°\)</span>).</p>
+</details>
+<h4 class="oppg" data-id="o6-9"><span class="oname">Oppgave 6.9</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Du står 50 m fra foten av et tårn og ser toppen under en vinkel på 35°. Øynene dine er 1,6 m over bakken. Hvor høyt er tårnet?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Høyden over øyehøyde: <span class="arithmatex">\(50 \cdot \tan 35° \approx 35{,}0\)</span> m</p>
+<p>Tårnet er <span class="arithmatex">\(35{,}0 + 1{,}6 \approx 36{,}6\)</span> m høyt.</p>
+</details>
+<h4 class="oppg" data-id="o6-10"><span class="oname">Oppgave 6.10</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>I trekant <span class="arithmatex">\(ABC\)</span> er <span class="arithmatex">\(AB = 8\)</span>, <span class="arithmatex">\(AC = 6\)</span> og <span class="arithmatex">\(\angle A = 60°\)</span>. Finn <span class="arithmatex">\(BC\)</span> og arealet av trekanten. Gi eksakte svar.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(BC^2 = 8^2 + 6^2 - 2 \cdot 8 \cdot 6 \cdot \cos 60° = 64 + 36 - 48 = 52\)</span>, så <span class="arithmatex">\(BC = \sqrt{52} = 2\sqrt{13} \approx 7{,}21\)</span></p>
+<p>Areal: <span class="arithmatex">\(\dfrac{1}{2} \cdot 8 \cdot 6 \cdot \sin 60° = 24 \cdot \dfrac{\sqrt{3}}{2} = 12\sqrt{3} \approx 20{,}8\)</span></p>
+</details>
+<h4 class="oppg" data-id="o6-11"><span class="oname">Oppgave 6.11</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Forklar med egne ord hvorfor arealsetningen er sann. Lag en skisse.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Se beviset over: Tegn høyden fra ett hjørne ned på motstående side. Bruk sinus i den rettvinklede trekanten til å uttrykke høyden som <span class="arithmatex">\(a \sin C\)</span>, og sett inn i «grunnlinje ganger høyde delt på 2». Øv på å forklare dette høyt. Det er en typisk muntlig eksamensoppgave!</p>
+</details></section>
+<section class="topic" id="sec-bevis" data-slug="bevis"><h1>7. Bevis, modellering og programmering</h1>
+<p>Disse temaene går på tvers av hele faget, og de er viktige på muntlig eksamen.</p>
+<h2>Bevis</h2>
+<p>Et <strong>bevis</strong> er en logisk forklaring som viser at noe er sant i <em>alle</em> tilfeller, ikke bare i noen eksempler.</p>
+<h3>Nyttige skrivemåter</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Hva</th>
+<th>Skrives som (<span class="arithmatex">\(n\)</span> er et helt tall)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>partall</td>
+<td><span class="arithmatex">\(2n\)</span></td>
+</tr>
+<tr>
+<td>oddetall</td>
+<td><span class="arithmatex">\(2n + 1\)</span></td>
+</tr>
+<tr>
+<td>tre påfølgende tall</td>
+<td><span class="arithmatex">\(n,\ n + 1,\ n + 2\)</span></td>
+</tr>
+<tr>
+<td>delelig med 3</td>
+<td><span class="arithmatex">\(3 \cdot (\text{et helt tall})\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Typer bevis</h3>
+<ul>
+<li><strong>Direkte bevis:</strong> Start med det du vet, og regn deg fram til påstanden.</li>
+<li><strong>Moteksempel:</strong> For å vise at en påstand er <em>usann</em>, holder det med <strong>ett</strong> eksempel der den ikke stemmer.</li>
+<li><strong>Eksempler er ikke bevis:</strong> At noe stemmer for <span class="arithmatex">\(n = 1, 2, 3\)</span> betyr ikke at det stemmer for alle <span class="arithmatex">\(n\)</span>.</li>
+</ul>
+<p><strong>Eksempel:</strong> Vis at summen av to oddetall alltid er et partall.</p>
+<p><span class="arithmatex">\((2m + 1) + (2n + 1) = 2m + 2n + 2 = 2(m + n + 1)\)</span>. Dette er 2 ganget med et helt tall, altså et partall. ∎</p>
+<h2>Modellering</h2>
+<p>En <strong>modell</strong> er en funksjon som beskriver noe fra virkeligheten. Slik jobber du:</p>
+<ol>
+<li><strong>Forstå situasjonen.</strong> Hva er <span class="arithmatex">\(x\)</span>, hva er <span class="arithmatex">\(y\)</span>, og hvilke enheter har de?</li>
+<li><strong>Velg funksjonstype.</strong> Lineær (lik økning), eksponentiell (lik prosentvis økning), andregrads (topp eller bunn) eller annen?</li>
+<li><strong>Lag modellen</strong>, for eksempel med regresjon i GeoGebra.</li>
+<li><strong>Bruk modellen</strong> til å svare på spørsmål.</li>
+<li><strong>Vurder modellen:</strong> Hvor godt passer den? For hvilke verdier er den gyldig? Hva tar den ikke hensyn til?</li>
+</ol>
+<blockquote>
+<p>💡 Å vurdere modellen kritisk er det som skiller en god besvarelse fra en veldig god.</p>
+</blockquote>
+<h2>Programmering med Python</h2>
+<p>I 1T skal du kunne bruke programmering til å løse matematiske problemer. Her er det viktigste:</p>
+<pre><code class="language-python"># Variabler og utskrift
+a = 5
+print(&quot;a er&quot;, a)
+
+# Funksjoner
+def f(x):
+    return x**2 - 4*x + 3      # x**2 betyr x i andre
+
+print(f(2))                    # skriver ut -1
+
+# for-løkke: lag en verditabell
+for x in range(0, 5):          # x = 0, 1, 2, 3, 4
+    print(x, f(x))
+
+# while-løkke: gjenta så lenge noe er sant
+beløp = 10000
+år = 0
+while beløp &lt; 20000:
+    beløp = beløp * 1.03
+    år = år + 1
+print(&quot;Doblet etter&quot;, år, &quot;år&quot;)
+
+# if-setning
+if f(1) == 0:
+    print(&quot;x = 1 er et nullpunkt&quot;)
+</code></pre>
+<h3>Halveringsmetoden (finne nullpunkt numerisk)</h3>
+<p>Hvis <span class="arithmatex">\(f(a)\)</span> og <span class="arithmatex">\(f(b)\)</span> har ulikt fortegn, ligger det et nullpunkt mellom <span class="arithmatex">\(a\)</span> og <span class="arithmatex">\(b\)</span>. Halver intervallet om og om igjen:</p>
+<pre><code class="language-python">def f(x):
+    return x**3 - x - 1
+
+a, b = 1, 2
+while b - a &gt; 0.0001:
+    m = (a + b) / 2
+    if f(a) * f(m) &lt; 0:    # ulikt fortegn: nullpunktet er i venstre halvdel
+        b = m
+    else:
+        a = m
+print(&quot;Nullpunkt ca.&quot;, round(m, 4))
+</code></pre>
+<p>Du kan kjøre Python gratis i nettleseren, for eksempel på <a href="https://trinket.io/python3">trinket.io</a> eller i <a href="https://ndla.no/f/matematikk-1t/be2ae5a11bba">NDLAs Python-ressurser</a>.</p>
+<h2>Oppgaver</h2>
+<h4 class="oppg" data-id="o7-1"><span class="oname">Oppgave 7.1</span><span class="lvl lvl-lett">lett</span></h4>
+<p>Vis at summen av tre påfølgende hele tall alltid er delelig med 3.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\(n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)\)</span>. Dette er 3 ganget med et helt tall, altså delelig med 3. ∎</p>
+</details>
+<h4 class="oppg" data-id="o7-2"><span class="oname">Oppgave 7.2</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Vis at produktet av to oddetall alltid er et oddetall.</p>
+<details>
+<summary>Vis fasit</summary>
+<p><span class="arithmatex">\((2m + 1)(2n + 1) = 4mn + 2m + 2n + 1 = 2(2mn + m + n) + 1\)</span></p>
+<p>Dette er på formen <span class="arithmatex">\(2k + 1\)</span>, altså et oddetall. ∎</p>
+</details>
+<h4 class="oppg" data-id="o7-3"><span class="oname">Oppgave 7.3</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Påstand: «<span class="arithmatex">\(n^2 + n + 41\)</span> er et primtall for alle naturlige tall <span class="arithmatex">\(n\)</span>.» Stemmer det?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Nei. Moteksempel: <span class="arithmatex">\(n = 40\)</span> gir <span class="arithmatex">\(1600 + 40 + 41 = 1681 = 41 \cdot 41\)</span>, som ikke er et primtall.</p>
+<p>(Påstanden stemmer for <span class="arithmatex">\(n = 0, 1, \dots, 39\)</span>. Dette viser hvorfor mange eksempler ikke er et bevis!)</p>
+</details>
+<h4 class="oppg" data-id="o7-4"><span class="oname">Oppgave 7.4</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Vis at differansen mellom kvadratene av to påfølgende oddetall alltid er delelig med 8.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>To påfølgende oddetall: <span class="arithmatex">\(2n + 1\)</span> og <span class="arithmatex">\(2n + 3\)</span>.</p>
+<p><span class="arithmatex">\((2n + 3)^2 - (2n + 1)^2 = (4n^2 + 12n + 9) - (4n^2 + 4n + 1) = 8n + 8 = 8(n + 1)\)</span> ∎</p>
+</details>
+<h4 class="oppg" data-id="o7-5"><span class="oname">Oppgave 7.5</span><span class="lvl lvl-middels">middels</span></h4>
+<p>Du setter inn 10 000 kr i banken med 3 % rente per år. Skriv et Python-program som finner hvor mange år det tar før beløpet er doblet.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Se <code>while</code>-løkka i teorien over. Programmet skriver ut <strong>24 år</strong>.</p>
+<p>Kontroll: <span class="arithmatex">\(1{,}03^{23} \approx 1{,}97\)</span> og <span class="arithmatex">\(1{,}03^{24} \approx 2{,}03\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o7-6"><span class="oname">Oppgave 7.6</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>Bruk halveringsmetoden (programmet over) til å finne nullpunktet til <span class="arithmatex">\(f(x) = x^3 - x - 1\)</span> mellom 1 og 2. Kontroller svaret i GeoGebra.</p>
+<details>
+<summary>Vis fasit</summary>
+<p>Nullpunktet er <span class="arithmatex">\(x \approx 1{,}3247\)</span>.</p>
+</details>
+<h4 class="oppg" data-id="o7-7"><span class="oname">Oppgave 7.7</span><span class="lvl lvl-utfordring">utfordring</span></h4>
+<p>En kopp kaffe er 90 °C. Temperaturen synker slik:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>0</th>
+<th>5</th>
+<th>10</th>
+<th>15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>°C</td>
+<td>90</td>
+<td>70</td>
+<td>56</td>
+<td>46</td>
+</tr>
+</tbody>
+</table></div>
+<p>a) Lag en lineær modell og en eksponentiell modell i GeoGebra.
+b) Hvilken passer best? Hva sier modellene om temperaturen etter 2 timer? Er det realistisk hvis romtemperaturen er 20 °C?</p>
+<details>
+<summary>Vis fasit</summary>
+<p>a) Lineær regresjon gir omtrent <span class="arithmatex">\(T(t) = -2{,}92t + 87{,}4\)</span>. Eksponentiell regresjon gir omtrent <span class="arithmatex">\(T(t) = 88{,}8 \cdot 0{,}956^t\)</span>. (Små avvik avhengig av avrunding er helt greit.)</p>
+<p>b) Den eksponentielle passer best, fordi temperaturen synker mindre og mindre for hvert minutt. Etter 120 minutter gir den lineære modellen en negativ temperatur (ca. −260 °C), som er umulig. Den eksponentielle gir under 1 °C, som også er feil, fordi kaffen aldri blir kaldere enn rommet (20 °C). Ingen av modellene er gyldige over lang tid. En bedre modell ville vært <span class="arithmatex">\(T(t) = 20 + 70 \cdot b^t\)</span>, som nærmer seg romtemperaturen.</p>
+</details></section>
+<section class="topic" id="sec-formelark" data-slug="formelark"><h1>8. Formelark 1T</h1>
+<p>Alle de viktigste reglene på ett sted. Fint å repetere fra før prøver!</p>
+<h2>Algebra</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Potenser</td>
+<td><span class="arithmatex">\(a^m a^n = a^{m+n}\)</span>, <span class="arithmatex">\(\ \dfrac{a^m}{a^n} = a^{m-n}\)</span>, <span class="arithmatex">\(\ (a^m)^n = a^{mn}\)</span>, <span class="arithmatex">\(\ (ab)^n = a^n b^n\)</span></td>
+</tr>
+<tr>
+<td></td>
+<td><span class="arithmatex">\(a^0 = 1\)</span>, <span class="arithmatex">\(\ a^{-n} = \dfrac{1}{a^n}\)</span>, <span class="arithmatex">\(\ a^{\frac{m}{n}} = \sqrt[n]{a^m}\)</span></td>
+</tr>
+<tr>
+<td>Standardform</td>
+<td><span class="arithmatex">\(a \cdot 10^k\)</span>, der <span class="arithmatex">\(1 \le a &lt; 10\)</span></td>
+</tr>
+<tr>
+<td>Kvadratsetninger</td>
+<td><span class="arithmatex">\((a \pm b)^2 = a^2 \pm 2ab + b^2\)</span>, <span class="arithmatex">\(\ (a+b)(a-b) = a^2 - b^2\)</span></td>
+</tr>
+<tr>
+<td>Faktorisering</td>
+<td><span class="arithmatex">\(ax^2 + bx + c = a(x - x_1)(x - x_2)\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Likninger og ulikheter</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abc-formelen</td>
+<td><span class="arithmatex">\(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</span></td>
+</tr>
+<tr>
+<td>Diskriminant</td>
+<td><span class="arithmatex">\(D = b^2 - 4ac\)</span>: to, én eller ingen løsninger</td>
+</tr>
+<tr>
+<td>Fullstendig kvadrat</td>
+<td><span class="arithmatex">\(x^2 + bx = \left(x + \frac{b}{2}\right)^2 - \left(\frac{b}{2}\right)^2\)</span></td>
+</tr>
+<tr>
+<td>Ulikheter</td>
+<td>Snu tegnet når du ganger eller deler med et negativt tall</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Funksjoner</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lineær</td>
+<td><span class="arithmatex">\(f(x) = ax + b\)</span>, <span class="arithmatex">\(\ a = \dfrac{y_2 - y_1}{x_2 - x_1}\)</span>, <span class="arithmatex">\(\ y - y_1 = a(x - x_1)\)</span></td>
+</tr>
+<tr>
+<td>Andregrads</td>
+<td><span class="arithmatex">\(f(x) = ax^2 + bx + c\)</span>, symmetrilinje <span class="arithmatex">\(x = -\dfrac{b}{2a}\)</span></td>
+</tr>
+<tr>
+<td>Toppunktform</td>
+<td><span class="arithmatex">\(f(x) = a(x - p)^2 + q\)</span> har topp- eller bunnpunkt i <span class="arithmatex">\((p, q)\)</span></td>
+</tr>
+<tr>
+<td>Rasjonal</td>
+<td><span class="arithmatex">\(f(x) = \dfrac{ax + b}{cx + d}\)</span>: vertikal asymptote der <span class="arithmatex">\(cx + d = 0\)</span>, horisontal <span class="arithmatex">\(y = \dfrac{a}{c}\)</span></td>
+</tr>
+<tr>
+<td>Eksponential</td>
+<td><span class="arithmatex">\(f(x) = a \cdot b^x\)</span>, vekstfaktor <span class="arithmatex">\(b = 1 + \dfrac{p}{100}\)</span></td>
+</tr>
+<tr>
+<td>Potens</td>
+<td><span class="arithmatex">\(f(x) = a \cdot x^b\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Polynomdivisjon</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nullpunktsetningen</td>
+<td><span class="arithmatex">\(P(a) = 0 \iff (x - a)\)</span> er en faktor i <span class="arithmatex">\(P(x)\)</span></td>
+</tr>
+<tr>
+<td>Restsetningen</td>
+<td>Resten ved <span class="arithmatex">\(P(x) : (x - a)\)</span> er <span class="arithmatex">\(P(a)\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Derivasjon</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gjennomsnittlig vekstfart</td>
+<td><span class="arithmatex">\(\dfrac{f(b) - f(a)}{b - a}\)</span></td>
+</tr>
+<tr>
+<td>Definisjon</td>
+<td><span class="arithmatex">\(f'(x) = \displaystyle\lim_{h \to 0} \frac{f(x + h) - f(x)}{h}\)</span></td>
+</tr>
+<tr>
+<td>Regler</td>
+<td><span class="arithmatex">\((c)' = 0\)</span>, <span class="arithmatex">\(\ (x^n)' = nx^{n-1}\)</span>, <span class="arithmatex">\(\ (c \cdot f)' = c \cdot f'\)</span>, <span class="arithmatex">\(\ (f + g)' = f' + g'\)</span></td>
+</tr>
+<tr>
+<td>Tangent</td>
+<td><span class="arithmatex">\(y - f(a) = f'(a)(x - a)\)</span></td>
+</tr>
+<tr>
+<td>Drøfting</td>
+<td><span class="arithmatex">\(f' &gt; 0\)</span>: stiger. <span class="arithmatex">\(f' &lt; 0\)</span>: synker. <span class="arithmatex">\(f' = 0\)</span>: mulig topp- eller bunnpunkt</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Trigonometri</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rettvinklet</td>
+<td><span class="arithmatex">\(\sin v = \dfrac{\text{mot}}{\text{hyp}}\)</span>, <span class="arithmatex">\(\ \cos v = \dfrac{\text{hos}}{\text{hyp}}\)</span>, <span class="arithmatex">\(\ \tan v = \dfrac{\text{mot}}{\text{hos}}\)</span></td>
+</tr>
+<tr>
+<td>Pytagoras</td>
+<td><span class="arithmatex">\(a^2 + b^2 = c^2\)</span></td>
+</tr>
+<tr>
+<td>Stumpe vinkler</td>
+<td><span class="arithmatex">\(\sin(180° - v) = \sin v\)</span>, <span class="arithmatex">\(\ \cos(180° - v) = -\cos v\)</span></td>
+</tr>
+<tr>
+<td>Arealsetningen</td>
+<td><span class="arithmatex">\(A = \dfrac{1}{2}ab\sin C\)</span></td>
+</tr>
+<tr>
+<td>Sinussetningen</td>
+<td><span class="arithmatex">\(\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}\)</span></td>
+</tr>
+<tr>
+<td>Cosinussetningen</td>
+<td><span class="arithmatex">\(a^2 = b^2 + c^2 - 2bc\cos A\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Eksakte verdier</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(v\)</span></th>
+<th><span class="arithmatex">\(30°\)</span></th>
+<th><span class="arithmatex">\(45°\)</span></th>
+<th><span class="arithmatex">\(60°\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\sin v\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{2}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{2}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\cos v\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{2}}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\tan v\)</span></td>
+<td><span class="arithmatex">\(\frac{\sqrt{3}}{3}\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(\sqrt{3}\)</span></td>
+</tr>
+</tbody>
+</table></div></section>
+  </main>
+</div>
+<script>
+(function(){
+  var KEY = 'olea-matte-1t-v1';
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { store = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.topic'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var slugs = sections.map(function(s){ return s.dataset.slug; });
+
+  // Tag warning callouts
+  document.querySelectorAll('blockquote').forEach(function(b){
+    if (b.textContent.indexOf('⚠️') > -1) b.classList.add('warn');
+  });
+
+  // Exercises: done buttons, toolbar, progress
+  sections.forEach(function(sec, i){
+    var ex = sec.querySelectorAll('h4.oppg');
+    if (ex.length) {
+      var h1 = sec.querySelector('h1');
+      var bar = document.createElement('div');
+      bar.innerHTML = '<div class="progress"><span></span></div><div class="ptext"></div>' +
+        '<div class="toolbar"><button type="button" data-act="open">Vis alle fasiter</button>' +
+        '<button type="button" data-act="close">Skjul alle fasiter</button>' +
+        '<button type="button" data-act="jump">Hopp til oppgavene</button>' +
+        '<button type="button" data-act="reset">Nullstill fremgang</button></div>';
+      h1.insertAdjacentElement('afterend', bar);
+      bar.addEventListener('click', function(e){
+        var act = e.target.dataset && e.target.dataset.act; if (!act) return;
+        if (act === 'open' || act === 'close') sec.querySelectorAll('details').forEach(function(d){ d.open = act === 'open'; });
+        if (act === 'jump') ex[0].scrollIntoView({behavior:'smooth', block:'start'});
+        if (act === 'reset') { ex.forEach(function(h){ delete store[h.dataset.id]; h.classList.remove('done'); h.querySelector('.done-btn').textContent = 'Løst?'; }); save(); refresh(); }
+      });
+    }
+    ex.forEach(function(h){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'done-btn';
+      var set = function(){ var d = !!store[h.dataset.id]; h.classList.toggle('done', d); b.textContent = d ? '✓ Løst' : 'Løst?'; };
+      b.addEventListener('click', function(){ store[h.dataset.id] = !store[h.dataset.id]; if (!store[h.dataset.id]) delete store[h.dataset.id]; save(); set(); refresh(); });
+      h.appendChild(b); set();
+    });
+    // Pager
+    var pg = document.createElement('div'); pg.className = 'pager';
+    var prev = i > 0 ? links[i-1] : null, next = i < links.length - 1 ? links[i+1] : null;
+    pg.innerHTML = (prev ? '<a href="#'+prev.dataset.slug+'">← '+prev.querySelector('.nt').textContent+'</a>' : '<span></span>') +
+                   (next ? '<a href="#'+next.dataset.slug+'">'+next.querySelector('.nt').textContent+' →</a>' : '<span></span>');
+    sec.appendChild(pg);
+  });
+
+  function refresh(){
+    sections.forEach(function(sec){
+      var ex = sec.querySelectorAll('h4.oppg'); if (!ex.length) return;
+      var n = 0; ex.forEach(function(h){ if (store[h.dataset.id]) n++; });
+      var c = document.querySelector('[data-cnt="'+sec.dataset.slug+'"]'); if (c) c.textContent = n + '/' + ex.length;
+      var p = sec.querySelector('.progress span'); if (p) p.style.width = (100*n/ex.length) + '%';
+      var t = sec.querySelector('.ptext'); if (t) t.textContent = n === ex.length ? 'Alle ' + n + ' oppgavene er løst. Sterkt jobba! 🌟' : n + ' av ' + ex.length + ' oppgaver løst';
+    });
+  }
+
+  function show(){
+    var h = (location.hash || '').replace('#','');
+    var slug = slugs.indexOf(h) > -1 ? h : 'start';
+    sections.forEach(function(s){ s.classList.toggle('on', s.dataset.slug === slug); });
+    links.forEach(function(a){ a.classList.toggle('active', a.dataset.slug === slug); });
+    document.body.classList.remove('nav-open');
+    window.scrollTo(0,0);
+  }
+
+  function start(){
+    if (document.body.classList.contains('ready')) return;
+    document.body.classList.add('ready');
+    refresh(); show();
+  }
+  window.__startApp = start;
+  setTimeout(start, 6000); // vis siden selv om formlene laster sakte
+  window.addEventListener('hashchange', show);
+  document.getElementById('menuBtn').addEventListener('click', function(){ document.body.classList.toggle('nav-open'); });
+  refresh();
+})();
+</script>
+</body>
+</html>
