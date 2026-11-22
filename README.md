@@ -2,7 +2,7 @@
 
 Oppslagsverk for **matematikk 1T** (Vg1 teoretisk) med regler, eksempler og oppgaver med fasit.
 
-👉 **Åpne siden:** https://m-mellem-commits.github.io/oleas-matte-univers/
+👉 **Åpne siden:** https://m-mellem-commits.github.io/Oleas-matte-univers/
 
 ## Innhold
 
